@@ -14,17 +14,19 @@ function ChallengeScreen({ navigation }) {
       <Box>
         <Box style={{ flex: 1, alignSelf: 'center', marginTop: 150 }}>
           <Button
+            justifyContent="center"
             mt={50}
             width={350}
             height={51}
             borderRadius="full"
             bg="#5648E3"
-            onPress={() => navigation.navigate('GameScreen')}
+            onPress={() => navigation.navigate('GameScreen', { data: 2 })}
           >
             <Text style={styles.buttonText}>Challenge-1</Text>
             <Tick right={18} top={16} position="absolute" color="white" />
           </Button>
           <Button
+            justifyContent="center"
             mt={15}
             width={350}
             height={51}
@@ -35,6 +37,7 @@ function ChallengeScreen({ navigation }) {
           </Button>
 
           <Button
+            justifyContent="center"
             mt={15}
             width={350}
             height={51}
@@ -45,6 +48,7 @@ function ChallengeScreen({ navigation }) {
             <Text style={styles.buttonText}>Challenge-3</Text>
           </Button>
           <Button
+            justifyContent="center"
             mt={15}
             width={350}
             height={51}

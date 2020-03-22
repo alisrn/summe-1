@@ -1,5 +1,5 @@
-import {TouchableOpacity} from 'react-native';
-import styled from 'styled-components';
+import { TouchableOpacity } from 'react-native'
+import styled from 'styled-components'
 import {
   compose,
   borderRadius,
@@ -8,18 +8,17 @@ import {
   layout,
   position,
   size,
-  space,
-} from 'styled-system';
+  space
+} from 'styled-system'
 
 const Button = styled(TouchableOpacity)(
   // eslint-disable-next-line prettier/prettier
-  compose(borderRadius, color, flexbox, layout, position, size, space),
-);
+  compose(borderRadius, color, flexbox, layout, position, size, space)
+)
 
 Button.defaultProps = {
   flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
+  alignItems: 'center'
+}
 
-export default Button;
+export default Button

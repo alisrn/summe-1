@@ -14,6 +14,7 @@ import HomeScreen from './views/HomeScreen'
 import ChallengeScreen from './views/ChallengeScreen'
 import GameScreen from './views/GameScreen'
 import MenuBar from './views/MenuBar'
+import RateUs from './views/RateUs'
 
 const Stack = createStackNavigator()
 
@@ -66,6 +67,33 @@ function Navigation() {
                   >
                     Menu
                   </Text>
+                </Button>
+              )
+            }
+          }}
+        />
+        <Stack.Screen
+          name="RateUs"
+          component={RateUs}
+          options={({ route, navigation }) => {
+            return {
+              title: 'Rate us',
+              headerTintColor: theme.colors.pink,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: 24
+              },
+              headerStyle: {
+                backgroundColor: theme.colors.background,
+                shadowColor: 'transparent'
+              },
+              headerLeft: () => (
+                <Button
+                  px={20}
+                  height="100%"
+                  onPress={() => navigation.navigate('MenuBar')}
+                >
+                  <Left color={theme.colors.blue} />
                 </Button>
               )
             }

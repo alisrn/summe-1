@@ -28,7 +28,14 @@ function HomeScreen(props) {
               Play
             </Text>
           </Button>
-          <Button alignSelf="flex-start" ml={265} mt={26}>
+          <Button
+            alignSelf="flex-start"
+            ml={265}
+            mt={26}
+            onPress={() => {
+              props.navigation.navigate('MenuBar')
+            }}
+          >
             <Text
               style={[
                 styles.buttonText,

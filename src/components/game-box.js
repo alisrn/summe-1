@@ -4,19 +4,23 @@ import Button from './button'
 import Text from './text'
 import theme from '../utils/theme'
 
-function GameBox({ children, ...props }) {
+function GameBox(props) {
+  const onTalePress = () => {
+    props.onTalePress(props.index)
+  }
+
   return (
     <Button
-      backgroundColor={theme.colors.box}
+      backgroundColor={props.pressed ? theme.colors.pink : theme.colors.box}
       borderRadius={5}
       width={75}
       height={75}
-      ml={75}
       alignItems="center"
       justifyContent="center"
       {...props}
+      onPress={onTalePress}
     >
-      <Text fontSize={42}>{children}</Text>
+      <Text fontSize={42}>{props.number}</Text>
     </Button>
   )
 }

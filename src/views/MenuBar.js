@@ -2,11 +2,15 @@ import * as React from 'react'
 
 import { Switch } from 'react-native'
 
+import Button from '../components/button'
 import Box from '../components/box'
 import Text from '../components/text'
 import theme from '../utils/theme'
 
-function MenuBar() {
+function MenuBar(props) {
+  const [soundValue, setSoundValue] = React.useState(false)
+  const [musicValue, setMusicValue] = React.useState(false)
+
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>
       <Box>
@@ -17,7 +21,8 @@ function MenuBar() {
           <Switch
             thumbColor={theme.colors.pink}
             trackColor={{ false: 'tranparent', true: theme.colors.blue }}
-            value={false}
+            value={soundValue}
+            onChange={() => setSoundValue(!soundValue)}
           />
         </Box>
         <Box flexDirection="row" mt={25} justifyContent="space-between" mr={16}>
@@ -27,18 +32,33 @@ function MenuBar() {
           <Switch
             thumbColor={theme.colors.pink}
             trackColor={{ false: 'tranparent', true: theme.colors.blue }}
-            value={true}
+            value={musicValue}
+            onChange={() => setMusicValue(!musicValue)}
           />
         </Box>
-        <Text color={theme.colors.pink} fontSize={24} ml={30} mt={25}>
-          Challenges
-        </Text>
-        <Text color={theme.colors.pink} fontSize={24} ml={30} mt={25}>
-          How to play
-        </Text>
-        <Text color={theme.colors.pink} fontSize={24} ml={30} mt={25}>
-          Rate to us
-        </Text>
+        <Button
+          ml={30}
+          mt={25}
+          onPress={() => props.navigation.navigate('Challenges')}
+        >
+          <Text color={theme.colors.pink} fontSize={24}>
+            Challenges
+          </Text>
+        </Button>
+        <Button ml={30} mt={25}>
+          <Text color={theme.colors.pink} fontSize={24}>
+            How to play
+          </Text>
+        </Button>
+        <Button
+          ml={30}
+          mt={25}
+          onPress={() => props.navigation.navigate('RateUs')}
+        >
+          <Text color={theme.colors.pink} fontSize={24}>
+            Rate to us
+          </Text>
+        </Button>
       </Box>
       <Box
         flex={1}
@@ -47,9 +67,11 @@ function MenuBar() {
         alignItems="flex-end"
         justifyContent="flex-end"
       >
-        <Text flex color={theme.colors.purple} fontSize={24}>
-          Restart
-        </Text>
+        <Button onPress={() => props.navigation.navigate('GameScreen')}>
+          <Text color={theme.colors.purple} fontSize={24}>
+            Restart
+          </Text>
+        </Button>
       </Box>
     </Box>
   )
