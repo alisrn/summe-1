@@ -13,6 +13,7 @@ const colors = {
   blue: '#4658FF',
   background: '#1F252D',
   pink: '#FF2B85',
+  purple: '#AD44ED',
   box: '#C4C4C4',
   red: '#E11E3C',
   softRed: '#F8F8F8',
