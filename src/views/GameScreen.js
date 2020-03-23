@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Image } from 'react-native'
+import { Image, Dimensions } from 'react-native'
 
 import Box from '../components/box'
 import SumList from '../components/sum-list'
@@ -11,12 +11,16 @@ import { levels } from '../helpers/levels'
 
 import { Scoreboard, Stopwatch } from '../components/icons'
 
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
+
 function GameScreen(props) {
   const [firstPressIndex, setFirstPressIndex] = React.useState(null)
   const [numList, setNumList] = React.useState([])
   const [sumList, setSumList] = React.useState([])
+  const [result, setResult] = React.useState(false)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
-
+  console.log(configuredLevel);
   const onTalePress = index => {
     if (firstPressIndex === undefined || firstPressIndex == null) {
       setFirstPressIndex(index)
@@ -31,7 +35,7 @@ function GameScreen(props) {
       setNewListAndSumList(tempList)
     }
   }
-
+  const allEqual = arr => arr.every( v => v === arr[0] )
   const setNewListAndSumList = defList => {
     let forSumList = []
     for (let i = 0; i < configuredLevel.total; i++) {
@@ -45,6 +49,12 @@ function GameScreen(props) {
     setSumList(forSumList)
     setNumList(defList)
     setFirstPressIndex(null)
+  
+    if(allEqual(forSumList)){
+      setResult(true);
+      alert("Ula saa helal olsun.")
+      props.route.params.updateUserLevel(configuredLevel.level + 1)
+    }
   }
 
   const foo = []
@@ -93,35 +103,35 @@ function GameScreen(props) {
     <Box flex={1} backgroundColor={theme.colors.background}>
       <Box mt={10} flexDirection="row" alignItems="center">
         <Text fontSize={18} color={theme.colors.pink} ml={20} mr={15}>
-          LEVEL - 3x3
+  LEVEL {configuredLevel.level} - {configuredLevel.colNum} x {configuredLevel.rowNum}
         </Text>
         <Image source={require('../assets/bar.png')} />
       </Box>
 
-      <Box mt={165}>
-        <Box ml={50}>{taleListObj}</Box>
+      <Box mt={140}>
+        <Box alignItems='center' >{taleListObj}</Box>
       </Box>
 
       <Box
+        alignSelf='center'
         borderWidth={2}
         borderColor={theme.colors.pink}
-        width={325}
-        ml={40}
-        mt={25}
+        width={WINDOW_WIDTH-80}
+        mt={25-(configuredLevel.colNum-3)*5}
       />
 
       <Box ml={50}>
         <SumList sumList={sumList} columnCount={configuredLevel.colNum} />
       </Box>
 
-      <Box flexDirection="row" mt={90}>
-        <Box ml={130} alignItems="center">
+      <Box flexDirection="row" top={WINDOW_HEIGHT - 200} left={WINDOW_WIDTH/2-64} position='absolute'>
+        <Box alignItems="center">
           <Scoreboard />
           <Text fontSize={18} color={theme.colors.pink} mt={10}>
             00:25
           </Text>
         </Box>
-        <Box ml={40} alignItems="center">
+        <Box ml={40} alignItems="center" >
           <Stopwatch />
           <Text fontSize={18} color={theme.colors.pink} mt={10}>
             1278

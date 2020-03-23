@@ -7,7 +7,11 @@ import Button from '../components/button'
 import Box from '../components/box'
 import { Tick, Lock } from '../components/icons'
 
-function ChallengeScreen({ navigation }) {
+function ChallengeScreen(props) {
+  const [userLevel, setUserLevel] = React.useState(1)
+  const updateUserLevel = (level) => {
+    setUserLevel(level)
+  }
   return (
     <Box style={styles.challengeScreen}>
       <StatusBar barStyle="light-content" />
@@ -20,10 +24,10 @@ function ChallengeScreen({ navigation }) {
             height={51}
             borderRadius="full"
             bg="#5648E3"
-            onPress={() => navigation.navigate('GameScreen', { data: 2 })}
+            onPress={() => props.navigation.navigate('GameScreen', { data: 1, updateUserLevel: updateUserLevel })}
           >
             <Text style={styles.buttonText}>Challenge-1</Text>
-            <Tick right={18} top={16} position="absolute" color="white" />
+            {userLevel > 1 ? <Tick right={18} top={16} position="absolute" color="white" /> : null}
           </Button>
           <Button
             justifyContent="center"
@@ -32,8 +36,11 @@ function ChallengeScreen({ navigation }) {
             height={51}
             borderRadius="full"
             bg="#F433A0"
+            onPress={() => props.navigation.navigate('GameScreen', { data: 2 })}
           >
+            {userLevel < 2 ? <Lock right={18} top={13} position="absolute" color="white" /> : null}
             <Text style={styles.buttonText}>Challenge-2</Text>
+            {userLevel > 2 ? <Tick right={18} top={16} position="absolute" color="white" /> : null}
           </Button>
 
           <Button
@@ -43,9 +50,12 @@ function ChallengeScreen({ navigation }) {
             height={51}
             borderRadius="full"
             bg="#BA3EE3"
+            onPress={() => props.navigation.navigate('GameScreen', { data: 3 })}
           >
-            <Lock right={18} top={13} position="absolute" color="white" />
+
+            {userLevel < 3 ? <Lock right={18} top={13} position="absolute" color="white" /> : null}
             <Text style={styles.buttonText}>Challenge-3</Text>
+            {userLevel > 3 ? <Tick right={18} top={16} position="absolute" color="white" /> : null}
           </Button>
           <Button
             justifyContent="center"

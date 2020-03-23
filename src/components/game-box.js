@@ -13,14 +13,14 @@ function GameBox(props) {
     <Button
       backgroundColor={props.pressed ? theme.colors.pink : theme.colors.box}
       borderRadius={5}
-      width={75}
-      height={75}
+      width={props.width ? props.width : 75}
+      height={props.height ? props.height : 75}
       alignItems="center"
       justifyContent="center"
       {...props}
       onPress={onTalePress}
     >
-      <Text fontSize={42}>{props.number}</Text>
+      <Text fontSize={props.fontSize ? props.fontSize : 42}>{props.number}</Text>
     </Button>
   )
 }
