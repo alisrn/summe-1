@@ -35,7 +35,7 @@ function GameScreen(props) {
       setNewListAndSumList(tempList)
     }
   }
-  const allEqual = arr => arr.every( v => v === arr[0] )
+  const allEqual = arr => arr.every(v => v === arr[0])
   const setNewListAndSumList = defList => {
     let forSumList = []
     for (let i = 0; i < configuredLevel.total; i++) {
@@ -49,8 +49,8 @@ function GameScreen(props) {
     setSumList(forSumList)
     setNumList(defList)
     setFirstPressIndex(null)
-  
-    if(allEqual(forSumList)){
+
+    if (allEqual(forSumList)) {
       setResult(true);
       alert("Ula saa helal olsun.")
       props.route.params.updateUserLevel(configuredLevel.level + 1)
@@ -72,27 +72,40 @@ function GameScreen(props) {
       />
     )
   })
+  const generate = (max, thecount) => {
+    var r = [];
+    var currsum = 0;
+    for (var i = 0; i < thecount - 1; i++) {
+      r[i] = randombetween(1, max - (thecount - i - 1) - currsum);
+      currsum += r[i];
+    }
+    r[thecount - 1] = max - currsum;
+    return r;
+  }
 
+  const randombetween = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  const shuffle = (array) => {
+    array.sort(() => Math.random() - 0.5);
+  }
   const generateNum = () => {
     let sum = 0
     const defList = []
     const forSumList = []
-    for (let i = 0; i < configuredLevel.total; i++) {
-      defList.push(Math.round(Math.random() * 10))
+    let maxNum = Math.floor(Math.random() * configuredLevel.minNum) + configuredLevel.maxNum - configuredLevel.minNum
+    for (let i = 0; i < configuredLevel.colNum; i++) {
+      defList.push(...generate(maxNum, configuredLevel.rowNum))
+      /* defList.push(Math.round(Math.random() * 10))
       if (i < configuredLevel.colNum) {
         forSumList.push(defList[i])
       } else {
         forSumList[i % configuredLevel.colNum] += defList[i]
       }
-      sum += defList[i]
+      sum += defList[i] */
     }
-    if (sum % configuredLevel.colNum !== 0) {
-      generateNum()
-      return
-    }
-
-    setNumList(defList)
-    setSumList(forSumList)
+    shuffle(defList)
+    setNewListAndSumList(defList)
   }
 
   React.useEffect(() => {
@@ -103,7 +116,7 @@ function GameScreen(props) {
     <Box flex={1} backgroundColor={theme.colors.background}>
       <Box mt={10} flexDirection="row" alignItems="center">
         <Text fontSize={18} color={theme.colors.pink} ml={20} mr={15}>
-  LEVEL {configuredLevel.level} - {configuredLevel.colNum} x {configuredLevel.rowNum}
+          LEVEL {configuredLevel.level} - {configuredLevel.colNum} x {configuredLevel.rowNum}
         </Text>
         <Image source={require('../assets/bar.png')} />
       </Box>
@@ -116,15 +129,15 @@ function GameScreen(props) {
         alignSelf='center'
         borderWidth={2}
         borderColor={theme.colors.pink}
-        width={WINDOW_WIDTH-80}
-        mt={25-(configuredLevel.colNum-3)*5}
+        width={WINDOW_WIDTH - 80}
+        mt={25 - (configuredLevel.colNum - 3) * 5}
       />
 
       <Box ml={50}>
         <SumList sumList={sumList} columnCount={configuredLevel.colNum} />
       </Box>
 
-      <Box flexDirection="row" top={WINDOW_HEIGHT - 200} left={WINDOW_WIDTH/2-64} position='absolute'>
+      <Box flexDirection="row" top={WINDOW_HEIGHT - 200} left={WINDOW_WIDTH / 2 - 64} position='absolute'>
         <Box alignItems="center">
           <Scoreboard />
           <Text fontSize={18} color={theme.colors.pink} mt={10}>

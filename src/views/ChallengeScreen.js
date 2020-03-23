@@ -36,7 +36,7 @@ function ChallengeScreen(props) {
             height={51}
             borderRadius="full"
             bg="#F433A0"
-            onPress={() => props.navigation.navigate('GameScreen', { data: 2 })}
+            onPress={() => props.navigation.navigate('GameScreen', { data: 2, updateUserLevel: updateUserLevel })}
           >
             {userLevel < 2 ? <Lock right={18} top={13} position="absolute" color="white" /> : null}
             <Text style={styles.buttonText}>Challenge-2</Text>
@@ -50,7 +50,7 @@ function ChallengeScreen(props) {
             height={51}
             borderRadius="full"
             bg="#BA3EE3"
-            onPress={() => props.navigation.navigate('GameScreen', { data: 3 })}
+            onPress={() => props.navigation.navigate('GameScreen', { data: 3, updateUserLevel: updateUserLevel })}
           >
 
             {userLevel < 3 ? <Lock right={18} top={13} position="absolute" color="white" /> : null}
@@ -64,9 +64,11 @@ function ChallengeScreen(props) {
             height={51}
             borderRadius="full"
             bg="#BA3EE3"
+            onPress={() => props.navigation.navigate('GameScreen', { data: 4, updateUserLevel: updateUserLevel })}
           >
-            <Lock right={18} top={13} position="absolute" color="white" />
+            {userLevel < 4 ? <Lock right={18} top={13} position="absolute" color="white" /> : null}
             <Text style={styles.buttonText}>Challenge-4</Text>
+            {userLevel > 4 ? <Tick right={18} top={16} position="absolute" color="white" /> : null}
           </Button>
         </Box>
       </Box>
