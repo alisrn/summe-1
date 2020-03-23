@@ -6,6 +6,7 @@ import SumList from '../components/sum-list'
 import TaleList from '../components/tale-list'
 import Text from '../components/text'
 import theme from '../utils/theme'
+import TimerCountDown from '../components/time-counter'
 
 import { levels } from '../helpers/levels'
 
@@ -18,6 +19,7 @@ function GameScreen(props) {
   const [firstPressIndex, setFirstPressIndex] = React.useState(null)
   const [numList, setNumList] = React.useState([])
   const [sumList, setSumList] = React.useState([])
+  const [timer, setTimer] = React.useState(0)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
   const onTalePress = index => {
     if (firstPressIndex === undefined || firstPressIndex == null) {
@@ -51,7 +53,7 @@ function GameScreen(props) {
     if (allEqual(forSumList)) {
       // eslint-disable-next-line no-alert
       alert('Ula saa helal olsun.')
-      props.route.params.updateUserLevel(configuredLevel.level + 1)
+      props.route.params.updateUserLevel(configuredLevel.level + 1, 10)
     }
   }
 
@@ -115,11 +117,9 @@ function GameScreen(props) {
         </Text>
         <Image source={require('../assets/bar.png')} />
       </Box>
-
       <Box mt={140}>
         <Box alignItems="center">{taleListObj}</Box>
       </Box>
-
       <Box
         alignSelf="center"
         borderWidth={2}
@@ -127,11 +127,9 @@ function GameScreen(props) {
         width={WINDOW_WIDTH - 80}
         mt={25 - (configuredLevel.colNum - 3) * 5}
       />
-
       <Box ml={50}>
         <SumList sumList={sumList} columnCount={configuredLevel.colNum} />
       </Box>
-
       <Box
         flexDirection="row"
         top={WINDOW_HEIGHT - 200}
@@ -146,9 +144,7 @@ function GameScreen(props) {
         </Box>
         <Box ml={40} alignItems="center">
           <Stopwatch />
-          <Text fontSize={18} color={theme.colors.pink} mt={10}>
-            1278
-          </Text>
+          <TimerCountDown style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }} />
         </Box>
       </Box>
     </Box>
