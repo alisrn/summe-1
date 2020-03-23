@@ -50,7 +50,7 @@ function Navigation() {
                 <Button
                   px={20}
                   height="100%"
-                  onPress={() => navigation.navigate('HomeScreen')}
+                  onPress={() => navigation.navigate('Challenges')}
                 >
                   <Image source={require('./assets/small-logo.png')} />
                 </Button>
