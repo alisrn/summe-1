@@ -19,7 +19,7 @@ function GameScreen(props) {
   const [firstPressIndex, setFirstPressIndex] = React.useState(null)
   const [numList, setNumList] = React.useState([])
   const [sumList, setSumList] = React.useState([])
-  const [timer, setTimer] = React.useState(0)
+  // const [timer, setTimer] = React.useState(0)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
   const onTalePress = index => {
     if (firstPressIndex === undefined || firstPressIndex == null) {
@@ -144,7 +144,10 @@ function GameScreen(props) {
         </Box>
         <Box ml={40} alignItems="center">
           <Stopwatch />
-          <TimerCountDown style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }} />
+          <TimerCountDown
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }}
+          />
         </Box>
       </Box>
     </Box>

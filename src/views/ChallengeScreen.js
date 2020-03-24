@@ -1,13 +1,14 @@
+/* eslint-disable radix */
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
 import { StatusBar } from 'react-native'
 import { StyleSheet, Text } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage';
-import { YellowBox } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage'
+import { YellowBox } from 'react-native'
 
 YellowBox.ignoreWarnings([
-  'Non-serializable values were found in the navigation state',
-]);
+  'Non-serializable values were found in the navigation state'
+])
 import Button from '../components/button'
 import Box from '../components/box'
 import { Tick, Lock } from '../components/icons'
@@ -24,18 +25,19 @@ function ChallengeScreen(props) {
     try {
       const level = await AsyncStorage.getItem('USER_LEVEL')
       setUserLevel(level ? level : 1)
-      console.log("retrieved user level: " + level)
+      console.log('retrieved user level: ' + level)
+      console.log(userLevel)
     } catch (e) {
       // saving error
-      console.log("there is an error on getting user level.")
+      console.log('there is an error on getting user level.')
       console.log(e)
     }
     try {
       const point = await AsyncStorage.getItem('USER_POINT')
       setUserPoint(point ? point : 0)
-      console.log("retrieved user point: " + point)
+      console.log('retrieved user point: ' + point)
     } catch (error) {
-      console.log("there is an error on getting user point.")
+      console.log('there is an error on getting user point.')
       console.log(error)
     }
   }
@@ -45,25 +47,26 @@ function ChallengeScreen(props) {
       setUserLevel(level)
       try {
         await AsyncStorage.setItem('USER_LEVEL', level.toString())
-        console.log("set user level: " + level.toString())
-
+        console.log('set user level: ' + level.toString())
       } catch (e) {
         // saving error
-        console.log("there is an error on save level.")
+        console.log('there is an error on save level.')
       }
     }
-    
+
     setUserPoint(parseInt(userPoint) + parseInt(point))
     await AsyncStorage.removeItem('USER_POINT')
-    console.log("removed")
+    console.log('removed')
     try {
-      await AsyncStorage.setItem('USER_POINT', (parseInt(userPoint) + parseInt(point)).toString())
-      console.log("set user POINT: " + (userPoint + point))
+      await AsyncStorage.setItem(
+        'USER_POINT',
+        (parseInt(userPoint) + parseInt(point)).toString()
+      )
+      console.log('set user POINT: ' + (userPoint + point))
     } catch (e) {
       // saving error
-      console.log("there is an error on save point.")
+      console.log('there is an error on save point.')
       console.log(e)
-
     }
   }
   return (
@@ -94,6 +97,7 @@ function ChallengeScreen(props) {
           <Button
             justifyContent="center"
             mt={15}
+            disabled={userLevel < 2 ? false : true}
             width={350}
             height={51}
             borderRadius="full"
@@ -118,6 +122,7 @@ function ChallengeScreen(props) {
           <Button
             justifyContent="center"
             mt={15}
+            disabled={userLevel < 2 ? false : true}
             width={350}
             height={51}
             borderRadius="full"
@@ -141,6 +146,7 @@ function ChallengeScreen(props) {
           <Button
             justifyContent="center"
             mt={15}
+            disabled={userLevel < 3 ? false : true}
             width={350}
             height={51}
             borderRadius="full"
