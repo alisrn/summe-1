@@ -5,7 +5,7 @@ import { Image, Text, StyleSheet, StatusBar } from 'react-native'
 import Button from '../components/button'
 import Box from '../components/box'
 
-function HomeScreen({ navigation }) {
+function HomeScreen(props) {
   return (
     <Box style={styles.homePage}>
       <StatusBar barStyle="light-content" />
@@ -16,7 +16,7 @@ function HomeScreen({ navigation }) {
             alignSelf="flex-start"
             ml={265}
             onPress={() => {
-              navigation.navigate('Challenges')
+              props.navigation.navigate('Challenges')
             }}
           >
             <Text
@@ -28,7 +28,14 @@ function HomeScreen({ navigation }) {
               Play
             </Text>
           </Button>
-          <Button alignSelf="flex-start" ml={265} mt={26}>
+          <Button
+            alignSelf="flex-start"
+            ml={265}
+            mt={26}
+            onPress={() => {
+              props.navigation.navigate('MenuBar')
+            }}
+          >
             <Text
               style={[
                 styles.buttonText,

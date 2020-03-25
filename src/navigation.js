@@ -13,6 +13,8 @@ import Button from './components/button'
 import HomeScreen from './views/HomeScreen'
 import ChallengeScreen from './views/ChallengeScreen'
 import GameScreen from './views/GameScreen'
+import MenuBar from './views/MenuBar'
+import RateUs from './views/RateUs'
 
 const Stack = createStackNavigator()
 
@@ -48,13 +50,13 @@ function Navigation() {
                 <Button
                   px={20}
                   height="100%"
-                  onPress={() => navigation.navigate('HomeScreen')}
+                  onPress={() => navigation.navigate('Challenges')}
                 >
                   <Image source={require('./assets/small-logo.png')} />
                 </Button>
               ),
               headerRight: () => (
-                <Button>
+                <Button onPress={() => navigation.navigate('MenuBar')}>
                   <Text
                     style={{
                       color: '#4658FF',
@@ -65,6 +67,60 @@ function Navigation() {
                   >
                     Menu
                   </Text>
+                </Button>
+              )
+            }
+          }}
+        />
+        <Stack.Screen
+          name="RateUs"
+          component={RateUs}
+          options={({ route, navigation }) => {
+            return {
+              title: 'Rate us',
+              headerTintColor: theme.colors.pink,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: 24
+              },
+              headerStyle: {
+                backgroundColor: theme.colors.background,
+                shadowColor: 'transparent'
+              },
+              headerLeft: () => (
+                <Button
+                  px={20}
+                  height="100%"
+                  onPress={() => navigation.navigate('MenuBar')}
+                >
+                  <Left color={theme.colors.blue} />
+                </Button>
+              )
+            }
+          }}
+        />
+        <Stack.Screen
+          name="MenuBar"
+          component={MenuBar}
+          options={({ route, navigation }) => {
+            return {
+              title: 'Menu',
+              headerTintColor: theme.colors.pink,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: 24
+              },
+              headerStyle: {
+                backgroundColor: theme.colors.background,
+                shadowColor: 'transparent'
+              },
+              headerLeft: () => (
+                <Button
+                  px={20}
+                  height="100%"
+                  onPress={() => navigation.navigate('HomeScreen')}
+                >
+                  <Left color={theme.colors.blue} />
                 </Button>
               )
             }
