@@ -97,7 +97,7 @@ function ChallengeScreen(props) {
           <Button
             justifyContent="center"
             mt={15}
-            disabled={userLevel < 2 ? false : true}
+            disabled={userLevel < 2}
             width={350}
             height={51}
             borderRadius="full"
@@ -122,7 +122,7 @@ function ChallengeScreen(props) {
           <Button
             justifyContent="center"
             mt={15}
-            disabled={userLevel < 2 ? false : true}
+            disabled={userLevel < 3}
             width={350}
             height={51}
             borderRadius="full"
@@ -146,7 +146,7 @@ function ChallengeScreen(props) {
           <Button
             justifyContent="center"
             mt={15}
-            disabled={userLevel < 3 ? false : true}
+            disabled={userLevel < 4}
             width={350}
             height={51}
             borderRadius="full"

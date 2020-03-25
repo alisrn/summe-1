@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { Switch } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import Button from '../components/button'
 import Box from '../components/box'
@@ -10,6 +11,41 @@ import theme from '../utils/theme'
 function MenuBar(props) {
   const [soundValue, setSoundValue] = React.useState(false)
   const [musicValue, setMusicValue] = React.useState(false)
+
+  React.useEffect(() => {
+    getUserPreferences()
+  },[])
+
+  const getUserPreferences = async () => {
+    try {
+      let user_preference = await AsyncStorage.getItem('USER_PREFERENCES')
+      user_preference = JSON.parse(user_preference)
+      setSoundValue(user_preference.sound)
+      setMusicValue(user_preference.music)
+      console.log('retrieved user PREFERENCE: ' + JSON.stringify(user_preference))
+    } catch (e) {
+      // saving error
+      console.log('there is an error on getting user PREFERENCE.')
+      console.log(e)
+    }
+  }
+
+  const updateUserPreferences = async (sound, music) => {
+      let preference = {}
+      preference.sound = sound
+      preference.music = music
+      preference = JSON.stringify(preference)
+      setMusicValue(music)
+      setSoundValue(sound)
+      
+      try {
+        await AsyncStorage.setItem('USER_PREFERENCES', preference)
+        console.log('set user preferences to: ' + preference)
+      } catch (e) {
+        // saving error
+        console.log('there is an error on save preferences.')
+      }
+    }
 
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>
@@ -22,7 +58,7 @@ function MenuBar(props) {
             thumbColor={theme.colors.pink}
             trackColor={{ false: 'tranparent', true: theme.colors.blue }}
             value={soundValue}
-            onChange={() => setSoundValue(!soundValue)}
+            onChange={() => updateUserPreferences(!soundValue, musicValue)}
           />
         </Box>
         <Box flexDirection="row" mt={25} justifyContent="space-between" mr={16}>
@@ -33,7 +69,7 @@ function MenuBar(props) {
             thumbColor={theme.colors.pink}
             trackColor={{ false: 'tranparent', true: theme.colors.blue }}
             value={musicValue}
-            onChange={() => setMusicValue(!musicValue)}
+            onChange={() => updateUserPreferences(soundValue, !musicValue)}
           />
         </Box>
         <Button
