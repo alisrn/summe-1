@@ -14,7 +14,7 @@ function MenuBar(props) {
 
   React.useEffect(() => {
     getUserPreferences()
-  },[])
+  }, [])
 
   const getUserPreferences = async () => {
     try {
@@ -22,7 +22,9 @@ function MenuBar(props) {
       user_preference = JSON.parse(user_preference)
       setSoundValue(user_preference.sound)
       setMusicValue(user_preference.music)
-      console.log('retrieved user PREFERENCE: ' + JSON.stringify(user_preference))
+      console.log(
+        'retrieved user PREFERENCE: ' + JSON.stringify(user_preference)
+      )
     } catch (e) {
       // saving error
       console.log('there is an error on getting user PREFERENCE.')
@@ -31,21 +33,21 @@ function MenuBar(props) {
   }
 
   const updateUserPreferences = async (sound, music) => {
-      let preference = {}
-      preference.sound = sound
-      preference.music = music
-      preference = JSON.stringify(preference)
-      setMusicValue(music)
-      setSoundValue(sound)
-      
-      try {
-        await AsyncStorage.setItem('USER_PREFERENCES', preference)
-        console.log('set user preferences to: ' + preference)
-      } catch (e) {
-        // saving error
-        console.log('there is an error on save preferences.')
-      }
+    let preference = {}
+    preference.sound = sound
+    preference.music = music
+    preference = JSON.stringify(preference)
+    setMusicValue(music)
+    setSoundValue(sound)
+
+    try {
+      await AsyncStorage.setItem('USER_PREFERENCES', preference)
+      console.log('set user preferences to: ' + preference)
+    } catch (e) {
+      // saving error
+      console.log('there is an error on save preferences.')
     }
+  }
 
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>

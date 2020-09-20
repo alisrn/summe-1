@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Image, Dimensions } from 'react-native'
-
+import { Image, Dimensions, StyleSheet } from 'react-native'
+import Modal from 'react-native-modal'
 import Box from '../components/box'
+import Button from '../components/button'
 import SumList from '../components/sum-list'
 import TaleList from '../components/tale-list'
 import Text from '../components/text'
@@ -19,6 +20,7 @@ function GameScreen(props) {
   const [firstPressIndex, setFirstPressIndex] = React.useState(null)
   const [numList, setNumList] = React.useState([])
   const [sumList, setSumList] = React.useState([])
+  const [isProblemSolved, setIsProblemSolved] = React.useState(false)
   // const [timer, setTimer] = React.useState(0)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
   const onTalePress = index => {
@@ -36,26 +38,35 @@ function GameScreen(props) {
     }
   }
   const allEqual = arr => arr.every(v => v === arr[0])
-  const setNewListAndSumList = defList => {
-    let forSumList = []
-    for (let i = 0; i < configuredLevel.total; i++) {
-      if (i < configuredLevel.colNum) {
-        forSumList.push(defList[i])
-      } else {
-        forSumList[i % configuredLevel.colNum] += defList[i]
+  const setNewListAndSumList = React.useCallback(
+    defList => {
+      let forSumList = []
+      for (let i = 0; i < configuredLevel.total; i++) {
+        if (i < configuredLevel.colNum) {
+          forSumList.push(defList[i])
+        } else {
+          forSumList[i % configuredLevel.colNum] += defList[i]
+        }
       }
-    }
 
-    setSumList(forSumList)
-    setNumList(defList)
-    setFirstPressIndex(null)
+      setSumList(forSumList)
+      setNumList(defList)
+      setFirstPressIndex(null)
 
-    if (allEqual(forSumList)) {
-      // eslint-disable-next-line no-alert
-      alert('Ula saa helal olsun.')
-      props.route.params.updateUserLevel(configuredLevel.level + 1, 10)
-    }
-  }
+      if (allEqual(forSumList)) {
+        // eslint-disable-next-line no-alert
+        //alert('Ula saa helal olsun.')
+        setIsProblemSolved(true)
+        props.route.params.updateUserLevel(configuredLevel.level + 1, 10)
+      }
+    },
+    [
+      configuredLevel.colNum,
+      configuredLevel.level,
+      configuredLevel.total,
+      props.route.params
+    ]
+  )
 
   const foo = []
   for (let i = 0; i < configuredLevel.rowNum; i++) {
@@ -74,7 +85,7 @@ function GameScreen(props) {
       />
     )
   })
-  const generate = (max, thecount) => {
+  const generate = React.useCallback((max, thecount) => {
     var r = []
     var currsum = 0
     for (var i = 0; i < thecount - 1; i++) {
@@ -83,33 +94,70 @@ function GameScreen(props) {
     }
     r[thecount - 1] = max - currsum
     return r
-  }
-
+  }, [])
   const randombetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
   const shuffle = array => {
     array.sort(() => Math.random() - 0.5)
   }
-  const generateNum = () => {
-    const defList = []
-    let maxNum =
-      Math.floor(Math.random() * configuredLevel.minNum) +
-      configuredLevel.maxNum -
-      configuredLevel.minNum
-    for (let i = 0; i < configuredLevel.colNum; i++) {
-      defList.push(...generate(maxNum, configuredLevel.rowNum))
-    }
-    shuffle(defList)
-    setNewListAndSumList(defList)
-  }
 
   React.useEffect(() => {
+    /*     const generate = (max, thecount) => {
+      var r = []
+      var currsum = 0
+      for (var i = 0; i < thecount - 1; i++) {
+        r[i] = randombetween(1, max - (thecount - i - 1) - currsum)
+        currsum += r[i]
+      }
+      r[thecount - 1] = max - currsum
+      return r
+    } */
+
+    const generateNum = () => {
+      const defList = []
+      let maxNum =
+        Math.floor(Math.random() * configuredLevel.minNum) +
+        configuredLevel.maxNum -
+        configuredLevel.minNum
+      for (let i = 0; i < configuredLevel.colNum; i++) {
+        defList.push(...generate(maxNum, configuredLevel.rowNum))
+      }
+      shuffle(defList)
+      setNewListAndSumList(defList)
+    }
     generateNum()
-  }, [])
+  }, [
+    configuredLevel.colNum,
+    configuredLevel.maxNum,
+    configuredLevel.minNum,
+    configuredLevel.rowNum,
+    generate,
+    setNewListAndSumList
+  ])
 
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>
+      <Modal
+        isVisible={isProblemSolved}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        style={styles.nextProblemModal}
+      >
+        <Box>
+          <Button
+            justifyContent="center"
+            mt={15}
+            width={WINDOW_WIDTH / 3}
+            height={51}
+            borderRadius="full"
+            bg="#F433A0"
+          //onPress={}
+          >
+            <Text style={styles.buttonText}>Next</Text>
+          </Button>
+        </Box>
+      </Modal>
       <Box mt={10} flexDirection="row" alignItems="center">
         <Text fontSize={18} color={theme.colors.pink} ml={20} mr={15}>
           LEVEL {configuredLevel.level} - {configuredLevel.colNum} x{' '}
@@ -153,5 +201,23 @@ function GameScreen(props) {
     </Box>
   )
 }
+
+const styles = StyleSheet.create({
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  nextProblemModal: {
+    backgroundColor: 'white',
+    height: WINDOW_HEIGHT / 2,
+    maxHeight: WINDOW_HEIGHT / 2,
+    width: (WINDOW_WIDTH * 5) / 6,
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginTop: WINDOW_HEIGHT / 4,
+    borderRadius: 5
+  }
+})
 
 export default GameScreen

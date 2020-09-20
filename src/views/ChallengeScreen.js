@@ -18,29 +18,28 @@ function ChallengeScreen(props) {
   const [userPoint, setUserPoint] = React.useState(0)
 
   React.useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const level = await AsyncStorage.getItem('USER_LEVEL')
+        setUserLevel(level ? level : 1)
+        console.log('retrieved user level: ' + level)
+        console.log(userLevel)
+      } catch (e) {
+        // saving error
+        console.log('there is an error on getting user level.')
+        console.log(e)
+      }
+      try {
+        const point = await AsyncStorage.getItem('USER_POINT')
+        setUserPoint(point ? point : 0)
+        console.log('retrieved user point: ' + point)
+      } catch (error) {
+        console.log('there is an error on getting user point.')
+        console.log(error)
+      }
+    }
     getUserInfo()
-  }, [])
-
-  const getUserInfo = async () => {
-    try {
-      const level = await AsyncStorage.getItem('USER_LEVEL')
-      setUserLevel(level ? level : 1)
-      console.log('retrieved user level: ' + level)
-      console.log(userLevel)
-    } catch (e) {
-      // saving error
-      console.log('there is an error on getting user level.')
-      console.log(e)
-    }
-    try {
-      const point = await AsyncStorage.getItem('USER_POINT')
-      setUserPoint(point ? point : 0)
-      console.log('retrieved user point: ' + point)
-    } catch (error) {
-      console.log('there is an error on getting user point.')
-      console.log(error)
-    }
-  }
+  }, [userLevel])
 
   const updateUserLevelAndPoint = async (level, point) => {
     if (level > userLevel) {
