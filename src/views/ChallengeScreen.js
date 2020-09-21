@@ -73,7 +73,7 @@ function ChallengeScreen(props) {
       i < (Math.floor((userLevel - 1) / 10) + 1) * 10;
       i++
     ) {
-      challengeButtonIndexList.push({ level: i + 1, index: i })
+      challengeButtonIndexList.push({ level: i + 1, id: i })
     }
   }
 
@@ -81,6 +81,7 @@ function ChallengeScreen(props) {
     if (userLevel > 0) {
       return (
         <ChallengeButton
+          key={'challenge' + item.id}
           index={item.level}
           isLocked={userLevel < item.level}
           isPassed={userLevel > item.level}
