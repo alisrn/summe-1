@@ -15,7 +15,7 @@ function ChallengeButton(props) {
       justifyContent="center"
       mt={50}
       width={350}
-      height={51}
+      height={50}
       borderRadius="full"
       bg={props.isPassed ? '#5648E3' : props.isLocked ? '#BA3EE3' : '#F433A0'}
       disabled={props.isDisabled}

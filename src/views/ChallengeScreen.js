@@ -1,7 +1,7 @@
 /* eslint-disable radix */
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-import { StatusBar, Dimensions, ScrollView } from 'react-native'
+import { StatusBar, Dimensions, FlatList } from 'react-native'
 import { StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -73,46 +73,52 @@ function ChallengeScreen(props) {
       i < (Math.floor((userLevel - 1) / 10) + 1) * 10;
       i++
     ) {
-      challengeButtonIndexList.push(i + 1)
+      challengeButtonIndexList.push({ level: i + 1, index: i })
     }
   }
 
-  const challengeButtonList =
-    userLevel > 0
-      ? challengeButtonIndexList.map(x => {
-        return (
-          <ChallengeButton
-            index={x}
-            isLocked={userLevel < x}
-            isPassed={userLevel > x}
-            isDisabled={userLevel !== x}
-            onChallengePress={() =>
-              props.navigation.navigate('GameScreen', {
-                data: x,
-                updateUserLevel: updateUserLevelAndPoint,
-                userPoint: userPoint
-              })
-            }
-          />
-        )
-      })
-      : null
+  const renderItem = ({ item }) => {
+    if (userLevel > 0) {
+      return (
+        <ChallengeButton
+          index={item.level}
+          isLocked={userLevel < item.level}
+          isPassed={userLevel > item.level}
+          isDisabled={userLevel !== item.level}
+          onChallengePress={() =>
+            props.navigation.navigate('GameScreen', {
+              data: item.level,
+              updateUserLevel: updateUserLevelAndPoint,
+              userPoint: userPoint
+            })
+          }
+        />
+      )
+    } else {
+      null
+    }
+  }
 
   return (
     <Box style={styles.challengeScreen}>
       <StatusBar barStyle="light-content" />
-      <ScrollView
+      <FlatList
         centerContent={true}
+        data={challengeButtonIndexList}
+        renderItem={renderItem}
+        extraData={(userLevel % 10) + 1}
         style={{
           maxHeight: (WINDOW_HEIGHT * 3) / 4,
           marginTop: 100,
-          marginBottom: 100
+          marginBottom: 100,
+          alignContent: 'center',
+          alignSelf: 'center'
         }}
       >
-        <Box style={{ flex: 1, alignSelf: 'center' }}>
+        {/*         <Box style={{ flex: 1, alignSelf: 'center' }}>
           {challengeButtonList}
-        </Box>
-      </ScrollView>
+        </Box> */}
+      </FlatList>
     </Box>
   )
 }
