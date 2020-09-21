@@ -1,27 +1,24 @@
 /* eslint-disable radix */
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-import { StatusBar } from 'react-native'
-import { StyleSheet, Text } from 'react-native'
+import { StatusBar, Dimensions, ScrollView } from 'react-native'
+import { StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
-import { YellowBox } from 'react-native'
 
-YellowBox.ignoreWarnings([
-  'Non-serializable values were found in the navigation state'
-])
-import Button from '../components/button'
 import Box from '../components/box'
-import { Tick, Lock } from '../components/icons'
+import ChallengeButton from '../components/challenge-button'
+
+const WINDOW_HEIGHT = Dimensions.get('window').height
 
 function ChallengeScreen(props) {
-  const [userLevel, setUserLevel] = React.useState(1)
+  const [userLevel, setUserLevel] = React.useState(0)
   const [userPoint, setUserPoint] = React.useState(0)
 
   React.useEffect(() => {
     const getUserInfo = async () => {
       try {
         const level = await AsyncStorage.getItem('USER_LEVEL')
-        setUserLevel(level ? level : 1)
+        setUserLevel(level ? parseInt(level) : 1)
         console.log('retrieved user level: ' + level)
         console.log(userLevel)
       } catch (e) {
@@ -68,106 +65,54 @@ function ChallengeScreen(props) {
       console.log(e)
     }
   }
+
+  const challengeButtonIndexList = []
+  if (userLevel > 0) {
+    for (
+      let i = Math.floor((userLevel - 1) / 10) * 10;
+      i < (Math.floor((userLevel - 1) / 10) + 1) * 10;
+      i++
+    ) {
+      challengeButtonIndexList.push(i + 1)
+    }
+  }
+
+  const challengeButtonList =
+    userLevel > 0
+      ? challengeButtonIndexList.map(x => {
+        return (
+          <ChallengeButton
+            index={x}
+            isLocked={userLevel < x}
+            isPassed={userLevel > x}
+            isDisabled={userLevel !== x}
+            onChallengePress={() =>
+              props.navigation.navigate('GameScreen', {
+                data: x,
+                updateUserLevel: updateUserLevelAndPoint,
+                userPoint: userPoint
+              })
+            }
+          />
+        )
+      })
+      : null
+
   return (
     <Box style={styles.challengeScreen}>
       <StatusBar barStyle="light-content" />
-      <Box>
-        <Box style={{ flex: 1, alignSelf: 'center', marginTop: 150 }}>
-          <Button
-            justifyContent="center"
-            mt={50}
-            width={350}
-            height={51}
-            borderRadius="full"
-            bg="#5648E3"
-            onPress={() =>
-              props.navigation.navigate('GameScreen', {
-                data: 1,
-                updateUserLevel: updateUserLevelAndPoint,
-                userPoint: userPoint
-              })
-            }
-          >
-            <Text style={styles.buttonText}>Challenge-1</Text>
-            {userLevel > 1 ? (
-              <Tick right={18} top={16} position="absolute" color="white" />
-            ) : null}
-          </Button>
-          <Button
-            justifyContent="center"
-            mt={15}
-            disabled={userLevel < 2}
-            width={350}
-            height={51}
-            borderRadius="full"
-            bg="#F433A0"
-            onPress={() =>
-              props.navigation.navigate('GameScreen', {
-                data: 2,
-                updateUserLevel: updateUserLevelAndPoint,
-                userPoint: userPoint
-              })
-            }
-          >
-            {userLevel < 2 ? (
-              <Lock right={18} top={13} position="absolute" color="white" />
-            ) : null}
-            <Text style={styles.buttonText}>Challenge-2</Text>
-            {userLevel > 2 ? (
-              <Tick right={18} top={16} position="absolute" color="white" />
-            ) : null}
-          </Button>
-
-          <Button
-            justifyContent="center"
-            mt={15}
-            disabled={userLevel < 3}
-            width={350}
-            height={51}
-            borderRadius="full"
-            bg="#BA3EE3"
-            onPress={() =>
-              props.navigation.navigate('GameScreen', {
-                data: 3,
-                updateUserLevel: updateUserLevelAndPoint,
-                userPoint: userPoint
-              })
-            }
-          >
-            {userLevel < 3 ? (
-              <Lock right={18} top={13} position="absolute" color="white" />
-            ) : null}
-            <Text style={styles.buttonText}>Challenge-3</Text>
-            {userLevel > 3 ? (
-              <Tick right={18} top={16} position="absolute" color="white" />
-            ) : null}
-          </Button>
-          <Button
-            justifyContent="center"
-            mt={15}
-            disabled={userLevel < 4}
-            width={350}
-            height={51}
-            borderRadius="full"
-            bg="#BA3EE3"
-            onPress={() =>
-              props.navigation.navigate('GameScreen', {
-                data: 4,
-                updateUserLevel: updateUserLevelAndPoint,
-                userPoint: userPoint
-              })
-            }
-          >
-            {userLevel < 4 ? (
-              <Lock right={18} top={13} position="absolute" color="white" />
-            ) : null}
-            <Text style={styles.buttonText}>Challenge-4</Text>
-            {userLevel > 4 ? (
-              <Tick right={18} top={16} position="absolute" color="white" />
-            ) : null}
-          </Button>
+      <ScrollView
+        centerContent={true}
+        style={{
+          maxHeight: (WINDOW_HEIGHT * 3) / 4,
+          marginTop: 100,
+          marginBottom: 100
+        }}
+      >
+        <Box style={{ flex: 1, alignSelf: 'center' }}>
+          {challengeButtonList}
         </Box>
-      </Box>
+      </ScrollView>
     </Box>
   )
 }

@@ -20,7 +20,9 @@ function GameBox(props) {
       {...props}
       onPress={onTalePress}
     >
-      <Text fontSize={props.fontSize ? props.fontSize : 42}>{props.number}</Text>
+      <Text fontSize={props.fontSize ? props.fontSize : 42}>
+        {props.number}
+      </Text>
     </Button>
   )
 }
