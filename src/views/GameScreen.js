@@ -23,6 +23,7 @@ function GameScreen(props) {
   const [isProblemSolved, setIsProblemSolved] = React.useState(false)
   // const [timer, setTimer] = React.useState(0)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
+
   const onTalePress = index => {
     if (firstPressIndex === undefined || firstPressIndex == null) {
       setFirstPressIndex(index)
@@ -41,7 +42,11 @@ function GameScreen(props) {
   const setNewListAndSumList = React.useCallback(
     defList => {
       let forSumList = []
-      for (let i = 0; i < configuredLevel.total; i++) {
+      for (
+        let i = 0;
+        i < configuredLevel.colNum * configuredLevel.rowNum;
+        i++
+      ) {
         if (i < configuredLevel.colNum) {
           forSumList.push(defList[i])
         } else {
@@ -54,8 +59,6 @@ function GameScreen(props) {
       setFirstPressIndex(null)
 
       if (allEqual(forSumList)) {
-        // eslint-disable-next-line no-alert
-        //alert('Ula saa helal olsun.')
         setIsProblemSolved(true)
         props.route.params.updateUserLevel(configuredLevel.level + 1, 10)
       }
@@ -63,7 +66,7 @@ function GameScreen(props) {
     [
       configuredLevel.colNum,
       configuredLevel.level,
-      configuredLevel.total,
+      configuredLevel.rowNum,
       props.route.params
     ]
   )
@@ -103,17 +106,6 @@ function GameScreen(props) {
   }
 
   React.useEffect(() => {
-    /*     const generate = (max, thecount) => {
-      var r = []
-      var currsum = 0
-      for (var i = 0; i < thecount - 1; i++) {
-        r[i] = randombetween(1, max - (thecount - i - 1) - currsum)
-        currsum += r[i]
-      }
-      r[thecount - 1] = max - currsum
-      return r
-    } */
-
     const generateNum = () => {
       const defList = []
       let maxNum =
@@ -136,6 +128,10 @@ function GameScreen(props) {
     setNewListAndSumList
   ])
 
+  const onNext = () => {
+    props.route.params.data = configuredLevel.level + 1
+    setIsProblemSolved(false)
+  }
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>
       <Modal
@@ -152,7 +148,7 @@ function GameScreen(props) {
             height={51}
             borderRadius="full"
             bg="#F433A0"
-          //onPress={}
+            onPress={onNext}
           >
             <Text style={styles.buttonText}>Next</Text>
           </Button>
@@ -165,7 +161,7 @@ function GameScreen(props) {
         </Text>
         <Image source={require('../assets/bar.png')} />
       </Box>
-      <Box mt={140}>
+      <Box mt={configuredLevel.rowNum > configuredLevel.colNum ? 30 : 100}>
         <Box alignItems="center">{taleListObj}</Box>
       </Box>
       <Box
