@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 
 import Box from '../components/box'
+import Text from '../components/text'
 import ChallengeButton from '../components/challenge-button'
 
 const WINDOW_HEIGHT = Dimensions.get('window').height
@@ -103,6 +104,17 @@ function ChallengeScreen(props) {
   return (
     <Box style={styles.challengeScreen}>
       <StatusBar barStyle="light-content" />
+      <Text
+        style={{
+          fontFamily: 'Starjedi',
+          fontSize: 48,
+          color: 'white',
+          alignSelf: 'center',
+          marginTop: 30
+        }}
+      >
+        Stage {Math.floor(userLevel / 10)}
+      </Text>
       <FlatList
         centerContent={true}
         data={challengeButtonIndexList}
@@ -110,7 +122,7 @@ function ChallengeScreen(props) {
         extraData={(userLevel % 10) + 1}
         style={{
           maxHeight: (WINDOW_HEIGHT * 3) / 4,
-          marginTop: 100,
+          marginTop: 50,
           marginBottom: 100,
           alignContent: 'center',
           alignSelf: 'center'

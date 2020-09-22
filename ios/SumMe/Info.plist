@@ -54,6 +54,14 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>Starjedi.ttf</string>
+		<string>Starjhol.ttf</string>
+		<string>Starjout.ttf</string>
+		<string>STJEDISE.TTF</string>
+		<string>Stjldbl1.ttf</string>
+		<string>Stjldbl2.ttf</string>
+		<string>Strjmono.ttf</string>
+	</array>
 </dict>
 </plist>

@@ -20,6 +20,13 @@
 		80F9110E7853184F6B34A9FA /* libPods-SumMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 064F9D7A1AF4F92A0B61836E /* libPods-SumMeTests.a */; };
 		8847DE3407FBCDE6745E249C /* libPods-SumMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E3C484DD1D173837FA2A8E /* libPods-SumMe.a */; };
 		F0C2CE9CC96DC17DB2F5E684 /* libPods-SumMe-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E9F1C703D5D006F3441779 /* libPods-SumMe-tvOS.a */; };
+		CA08C776CA1E469384D720E6 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */; };
+		9FCDBA6024034C70984E921F /* Starjhol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0C4249A5DEB410D99C1E496 /* Starjhol.ttf */; };
+		AC30C13E398E45518AB795F6 /* Starjout.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD74E65728874510A70ECFFE /* Starjout.ttf */; };
+		92396029AE064C3EA7262271 /* STJEDISE.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8B78080671964584919004D6 /* STJEDISE.TTF */; };
+		D90B9747877140FD81DED35C /* Stjldbl1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */; };
+		793D29C839084FDC928FE201 /* Stjldbl2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */; };
+		FFA6DCCDA2974EC59C2C7473 /* Strjmono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC61F7B836466B904EF212 /* Strjmono.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +74,13 @@
 		E3E3C484DD1D173837FA2A8E /* libPods-SumMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SumMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */ = {isa = PBXFileReference; name = "Starjedi.ttf"; path = "../src/assets/fonts/Starjedi.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C0C4249A5DEB410D99C1E496 /* Starjhol.ttf */ = {isa = PBXFileReference; name = "Starjhol.ttf"; path = "../src/assets/fonts/Starjhol.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD74E65728874510A70ECFFE /* Starjout.ttf */ = {isa = PBXFileReference; name = "Starjout.ttf"; path = "../src/assets/fonts/Starjout.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8B78080671964584919004D6 /* STJEDISE.TTF */ = {isa = PBXFileReference; name = "STJEDISE.TTF"; path = "../src/assets/fonts/STJEDISE.TTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */ = {isa = PBXFileReference; name = "Stjldbl1.ttf"; path = "../src/assets/fonts/Stjldbl1.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */ = {isa = PBXFileReference; name = "Stjldbl2.ttf"; path = "../src/assets/fonts/Stjldbl2.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0BBC61F7B836466B904EF212 /* Strjmono.ttf */ = {isa = PBXFileReference; name = "Strjmono.ttf"; path = "../src/assets/fonts/Strjmono.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +215,13 @@
 		FAA3045B10494BD193D621DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */,
+				C0C4249A5DEB410D99C1E496 /* Starjhol.ttf */,
+				AD74E65728874510A70ECFFE /* Starjout.ttf */,
+				8B78080671964584919004D6 /* STJEDISE.TTF */,
+				43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */,
+				5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */,
+				0BBC61F7B836466B904EF212 /* Strjmono.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -346,6 +367,13 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				CA08C776CA1E469384D720E6 /* Starjedi.ttf in Resources */,
+				9FCDBA6024034C70984E921F /* Starjhol.ttf in Resources */,
+				AC30C13E398E45518AB795F6 /* Starjout.ttf in Resources */,
+				92396029AE064C3EA7262271 /* STJEDISE.TTF in Resources */,
+				D90B9747877140FD81DED35C /* Stjldbl1.ttf in Resources */,
+				793D29C839084FDC928FE201 /* Stjldbl2.ttf in Resources */,
+				FFA6DCCDA2974EC59C2C7473 /* Strjmono.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

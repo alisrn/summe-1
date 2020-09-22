@@ -137,15 +137,19 @@ function GameScreen(props) {
       <Modal
         isVisible={isProblemSolved}
         animationIn="slideInUp"
+        animationInTiming={500}
         animationOut="slideOutDown"
+        animationOutTiming={500}
         style={styles.nextProblemModal}
       >
+        <Text style={styles.finish}>Mission Complished!</Text>
+
         <Box>
           <Button
             justifyContent="center"
             mt={15}
-            width={WINDOW_WIDTH / 3}
-            height={51}
+            width={WINDOW_WIDTH / 2}
+            height={50}
             borderRadius="full"
             bg="#F433A0"
             onPress={onNext}
@@ -201,11 +205,17 @@ function GameScreen(props) {
 const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: 'bold'
   },
+  finish: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'Starjedi'
+  },
   nextProblemModal: {
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
     height: WINDOW_HEIGHT / 2,
     maxHeight: WINDOW_HEIGHT / 2,
     width: (WINDOW_WIDTH * 5) / 6,
