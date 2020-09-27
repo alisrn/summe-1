@@ -120,7 +120,15 @@ function ChallengeScreen(props) {
         centerContent={true}
         data={challengeButtonIndexList}
         renderItem={renderItem}
-        extraData={(userLevel % 10) + 1}
+        contentOffset={{
+          x: 0,
+          y:
+            userLevel % 10 != 0 && userLevel % 10 < 5
+              ? 0
+              : userLevel % 10 === 0
+                ? 240
+                : 50 + 80 * ((userLevel % 10) - 4)
+        }}
         showsVerticalScrollIndicator={false}
         style={{
           maxHeight: (WINDOW_HEIGHT * 3) / 4,
@@ -130,11 +138,7 @@ function ChallengeScreen(props) {
           alignContent: 'center',
           alignSelf: 'center'
         }}
-      >
-        {/*         <Box style={{ flex: 1, alignSelf: 'center' }}>
-          {challengeButtonList}
-        </Box> */}
-      </FlatList>
+      />
     </Box>
   )
 }
