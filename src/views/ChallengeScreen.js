@@ -10,6 +10,7 @@ import Text from '../components/text'
 import ChallengeButton from '../components/challenge-button'
 
 const WINDOW_HEIGHT = Dimensions.get('window').height
+const WINDOW_WIDTH = Dimensions.get('window').width
 
 function ChallengeScreen(props) {
   const [userLevel, setUserLevel] = React.useState(0)
@@ -120,10 +121,12 @@ function ChallengeScreen(props) {
         data={challengeButtonIndexList}
         renderItem={renderItem}
         extraData={(userLevel % 10) + 1}
+        showsVerticalScrollIndicator={false}
         style={{
           maxHeight: (WINDOW_HEIGHT * 3) / 4,
           marginTop: 50,
           marginBottom: 100,
+          maxwidth: WINDOW_WIDTH,
           alignContent: 'center',
           alignSelf: 'center'
         }}

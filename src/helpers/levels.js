@@ -134,80 +134,80 @@ export const levels = [
   },
   {
     level: 20,
-    rowNum: 4,
+    rowNum: 3,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 21,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 22,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 23,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 24,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 25,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 26,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 27,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 28,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 29,
     rowNum: 4,
     colNum: 3,
-    minNum: 20,
-    maxNum: 40
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 30,
     rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
+    colNum: 3,
+    minNum: 25,
+    maxNum: 45
   },
   {
     level: 31,
@@ -274,7 +274,7 @@ export const levels = [
   },
   {
     level: 40,
-    rowNum: 5,
+    rowNum: 4,
     colNum: 4,
     minNum: 40,
     maxNum: 60
@@ -345,8 +345,78 @@ export const levels = [
   {
     level: 50,
     rowNum: 5,
-    colNum: 5,
+    colNum: 4,
     minNum: 40,
     maxNum: 60
+  },
+  {
+    level: 51,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 52,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 53,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 54,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 55,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 56,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 57,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 58,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 59,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
+  },
+  {
+    level: 60,
+    rowNum: 5,
+    colNum: 5,
+    minNum: 50,
+    maxNum: 70
   }
 ]
