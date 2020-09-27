@@ -17,15 +17,15 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* SumMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SumMeTests.m */; };
+		793D29C839084FDC928FE201 /* Stjldbl2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */; };
 		80F9110E7853184F6B34A9FA /* libPods-SumMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 064F9D7A1AF4F92A0B61836E /* libPods-SumMeTests.a */; };
 		8847DE3407FBCDE6745E249C /* libPods-SumMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E3C484DD1D173837FA2A8E /* libPods-SumMe.a */; };
-		F0C2CE9CC96DC17DB2F5E684 /* libPods-SumMe-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E9F1C703D5D006F3441779 /* libPods-SumMe-tvOS.a */; };
-		CA08C776CA1E469384D720E6 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */; };
+		92396029AE064C3EA7262271 /* STJEDISE.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8B78080671964584919004D6 /* STJEDISE.TTF */; };
 		9FCDBA6024034C70984E921F /* Starjhol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0C4249A5DEB410D99C1E496 /* Starjhol.ttf */; };
 		AC30C13E398E45518AB795F6 /* Starjout.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD74E65728874510A70ECFFE /* Starjout.ttf */; };
-		92396029AE064C3EA7262271 /* STJEDISE.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8B78080671964584919004D6 /* STJEDISE.TTF */; };
+		CA08C776CA1E469384D720E6 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */; };
 		D90B9747877140FD81DED35C /* Stjldbl1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */; };
-		793D29C839084FDC928FE201 /* Stjldbl2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */; };
+		F0C2CE9CC96DC17DB2F5E684 /* libPods-SumMe-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E9F1C703D5D006F3441779 /* libPods-SumMe-tvOS.a */; };
 		FFA6DCCDA2974EC59C2C7473 /* Strjmono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC61F7B836466B904EF212 /* Strjmono.ttf */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +53,7 @@
 		00E356F21AD99517003FC87E /* SumMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SumMeTests.m; sourceTree = "<group>"; };
 		01C554D858B1D308189C6687 /* Pods-SumMe-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SumMe-tvOSTests/Pods-SumMe-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		064F9D7A1AF4F92A0B61836E /* libPods-SumMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SumMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BBC61F7B836466B904EF212 /* Strjmono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Strjmono.ttf; path = ../src/assets/fonts/Strjmono.ttf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SumMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SumMe/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SumMe/AppDelegate.m; sourceTree = "<group>"; };
@@ -64,23 +65,22 @@
 		20A5DCDE3527848447E5C4C9 /* libPods-SumMe-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SumMe-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* SumMe-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SumMe-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SumMe-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SumMe-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Stjldbl1.ttf; path = ../src/assets/fonts/Stjldbl1.ttf; sourceTree = "<group>"; };
 		52505945957377FA1D182ED6 /* Pods-SumMe-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-SumMe-tvOSTests/Pods-SumMe-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Stjldbl2.ttf; path = ../src/assets/fonts/Stjldbl2.ttf; sourceTree = "<group>"; };
 		5D6EF0331FE98599036847F5 /* Pods-SumMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe.debug.xcconfig"; path = "Target Support Files/Pods-SumMe/Pods-SumMe.debug.xcconfig"; sourceTree = "<group>"; };
+		8B78080671964584919004D6 /* STJEDISE.TTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = STJEDISE.TTF; path = ../src/assets/fonts/STJEDISE.TTF; sourceTree = "<group>"; };
 		8F4B411A285537208E879009 /* Pods-SumMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe.release.xcconfig"; path = "Target Support Files/Pods-SumMe/Pods-SumMe.release.xcconfig"; sourceTree = "<group>"; };
 		92E9F1C703D5D006F3441779 /* libPods-SumMe-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SumMe-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		973E13979B4DFB539E1A96C6 /* Pods-SumMe-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SumMe-tvOS/Pods-SumMe-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		AD74E65728874510A70ECFFE /* Starjout.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Starjout.ttf; path = ../src/assets/fonts/Starjout.ttf; sourceTree = "<group>"; };
 		BD9AE7BE5AB6C2EA476B55A6 /* Pods-SumMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMeTests.release.xcconfig"; path = "Target Support Files/Pods-SumMeTests/Pods-SumMeTests.release.xcconfig"; sourceTree = "<group>"; };
+		C0C4249A5DEB410D99C1E496 /* Starjhol.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Starjhol.ttf; path = ../src/assets/fonts/Starjhol.ttf; sourceTree = "<group>"; };
 		CA179A43071BE54E2FC6F009 /* Pods-SumMe-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe-tvOS.release.xcconfig"; path = "Target Support Files/Pods-SumMe-tvOS/Pods-SumMe-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		E3E3C484DD1D173837FA2A8E /* libPods-SumMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SumMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */ = {isa = PBXFileReference; name = "Starjedi.ttf"; path = "../src/assets/fonts/Starjedi.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C0C4249A5DEB410D99C1E496 /* Starjhol.ttf */ = {isa = PBXFileReference; name = "Starjhol.ttf"; path = "../src/assets/fonts/Starjhol.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		AD74E65728874510A70ECFFE /* Starjout.ttf */ = {isa = PBXFileReference; name = "Starjout.ttf"; path = "../src/assets/fonts/Starjout.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8B78080671964584919004D6 /* STJEDISE.TTF */ = {isa = PBXFileReference; name = "STJEDISE.TTF"; path = "../src/assets/fonts/STJEDISE.TTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */ = {isa = PBXFileReference; name = "Stjldbl1.ttf"; path = "../src/assets/fonts/Stjldbl1.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */ = {isa = PBXFileReference; name = "Stjldbl2.ttf"; path = "../src/assets/fonts/Stjldbl2.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0BBC61F7B836466B904EF212 /* Strjmono.ttf */ = {isa = PBXFileReference; name = "Strjmono.ttf"; path = "../src/assets/fonts/Strjmono.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EE506B78DA5A4156AD6DF2E9 /* Starjedi.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Starjedi.ttf; path = ../src/assets/fonts/Starjedi.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,7 +318,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = F7C2C8FC77;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = F7C2C8FC77;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -333,10 +337,9 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SumMe" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -619,6 +622,8 @@
 			baseConfigurationReference = 15EAB78EB4CA78504E23D7FB /* Pods-SumMeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = F7C2C8FC77;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -642,7 +647,9 @@
 			baseConfigurationReference = BD9AE7BE5AB6C2EA476B55A6 /* Pods-SumMeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = F7C2C8FC77;
 				INFOPLIST_FILE = SumMeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -664,6 +671,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = F7C2C8FC77;
 				INFOPLIST_FILE = SumMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -684,6 +692,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = F7C2C8FC77;
 				INFOPLIST_FILE = SumMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -708,6 +717,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "SumMe-tvOS/Info.plist";
@@ -737,6 +747,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "SumMe-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -853,7 +864,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -899,7 +910,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
