@@ -6,7 +6,9 @@ import theme from '../utils/theme'
 
 function GameBox(props) {
   const onTalePress = () => {
-    props.onTalePress(props.index)
+    if (props.onTalePress) {
+      props.onTalePress(props.index)
+    }
   }
 
   return (

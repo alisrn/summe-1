@@ -15,7 +15,6 @@ import Box from '../components/box'
 //import bg from '../assets/bg'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
-const WINDOW_HEIGHT = Dimensions.get('window').height
 
 function HomeScreen(props) {
   let yValue = new Animated.Value(0)

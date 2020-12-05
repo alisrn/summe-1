@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Image, Dimensions, StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 import Modal from 'react-native-modal'
 import Box from '../components/box'
 import Button from '../components/button'
@@ -11,7 +11,7 @@ import TimerCountDown from '../components/time-counter'
 
 import { levels } from '../helpers/levels'
 
-import { Scoreboard, Stopwatch } from '../components/icons'
+import { Stopwatch } from '../components/icons'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
 const WINDOW_HEIGHT = Dimensions.get('window').height
@@ -20,7 +20,6 @@ function GameScreen(props) {
   const [firstPressIndex, setFirstPressIndex] = React.useState(null)
   const [numList, setNumList] = React.useState([])
   const [sumList, setSumList] = React.useState([])
-  const [gamePoint, setGamePoint] = React.useState(2000)
   const [isProblemSolved, setIsProblemSolved] = React.useState(false)
   const [timer, setTimer] = React.useState(100)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
@@ -39,7 +38,6 @@ function GameScreen(props) {
       tempList[secondIndex] = temp1
       setNewListAndSumList(tempList)
       if (firstIndex !== secondIndex) {
-        setGamePoint(gamePoint - 100)
         props.navigation.setOptions({ title: leftMoveCount - 1 })
         setLeftMoveCount(leftMoveCount - 1)
       }
@@ -67,13 +65,18 @@ function GameScreen(props) {
 
       if (allEqual(forSumList)) {
         setIsProblemSolved(true)
-        props.route.params.updateUserLevel(configuredLevel.level + 1, 10)
+        props.route.params.updateUserLevel(
+          configuredLevel.level + 1,
+          leftMoveCount * 100
+        )
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       configuredLevel.colNum,
       configuredLevel.level,
       configuredLevel.rowNum,
+      //leftMoveCount,
       props.route.params
     ]
   )
@@ -140,8 +143,8 @@ function GameScreen(props) {
     props.route.params.data = configuredLevel.level + 1
     setIsProblemSolved(false)
     setLeftMoveCount(20)
-    props.navigation.setOptions({ title: 20 })
     setTimer(100)
+    props.navigation.setOptions({ title: 20 })
   }
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>
@@ -174,7 +177,6 @@ function GameScreen(props) {
           LEVEL {configuredLevel.level} - {configuredLevel.colNum} x{' '}
           {configuredLevel.rowNum}
         </Text>
-        <Image source={require('../assets/bar.png')} />
       </Box>
       <Box mt={configuredLevel.rowNum > configuredLevel.colNum ? 30 : 100}>
         <Box alignItems="center">{taleListObj}</Box>
@@ -195,12 +197,6 @@ function GameScreen(props) {
         left={WINDOW_WIDTH / 2 - 64}
         position="absolute"
       >
-        <Box alignItems="center">
-          <Scoreboard />
-          <Text fontSize={18} color={theme.colors.pink} mt={10}>
-            00:25
-          </Text>
-        </Box>
         <Box ml={40} alignItems="center">
           <Stopwatch />
           <TimerCountDown
