@@ -16,19 +16,19 @@ class TimerCountdown extends Component {
     )
   }
 
-  componentDidUpdate() {
-    if (this.state.timer === 100) {
-      console.log('-------------------timer count down is leaking')
-      clearInterval(this.interval)
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.interval)
   }
 
   render() {
-    return <Text style={this.props.style}> {this.state.timer} </Text>
+    return (
+      <Text style={this.props.style}>
+        {' '}
+        {this.state.timer > this.props.countFrom
+          ? 0
+          : this.props.countFrom - this.state.timer}{' '}
+      </Text>
+    )
   }
 }
 

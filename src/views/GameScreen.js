@@ -20,9 +20,11 @@ function GameScreen(props) {
   const [firstPressIndex, setFirstPressIndex] = React.useState(null)
   const [numList, setNumList] = React.useState([])
   const [sumList, setSumList] = React.useState([])
+  const [gamePoint, setGamePoint] = React.useState(2000)
   const [isProblemSolved, setIsProblemSolved] = React.useState(false)
-  // const [timer, setTimer] = React.useState(0)
+  const [timer, setTimer] = React.useState(100)
   const configuredLevel = levels.find(x => x.level === props.route.params.data)
+  const [leftMoveCount, setLeftMoveCount] = React.useState(20)
 
   const onTalePress = index => {
     if (firstPressIndex === undefined || firstPressIndex == null) {
@@ -36,6 +38,11 @@ function GameScreen(props) {
       tempList[firstIndex] = tempList[secondIndex]
       tempList[secondIndex] = temp1
       setNewListAndSumList(tempList)
+      if (firstIndex !== secondIndex) {
+        setGamePoint(gamePoint - 100)
+        props.navigation.setOptions({ title: leftMoveCount - 1 })
+        setLeftMoveCount(leftMoveCount - 1)
+      }
     }
   }
   const allEqual = arr => arr.every(v => v === arr[0])
@@ -109,9 +116,10 @@ function GameScreen(props) {
     const generateNum = () => {
       const defList = []
       let maxNum =
-        Math.floor(Math.random() * configuredLevel.minNum) +
-        configuredLevel.maxNum -
-        configuredLevel.minNum
+        configuredLevel.minNum +
+        Math.floor(
+          Math.random() * (configuredLevel.maxNum - configuredLevel.minNum)
+        )
       for (let i = 0; i < configuredLevel.colNum; i++) {
         defList.push(...generate(maxNum, configuredLevel.rowNum))
       }
@@ -131,6 +139,9 @@ function GameScreen(props) {
   const onNext = () => {
     props.route.params.data = configuredLevel.level + 1
     setIsProblemSolved(false)
+    setLeftMoveCount(20)
+    props.navigation.setOptions({ title: 20 })
+    setTimer(100)
   }
   return (
     <Box flex={1} backgroundColor={theme.colors.background}>
@@ -195,6 +206,7 @@ function GameScreen(props) {
           <TimerCountDown
             // eslint-disable-next-line react-native/no-inline-styles
             style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }}
+            countFrom={timer}
           />
         </Box>
       </Box>

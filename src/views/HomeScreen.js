@@ -89,7 +89,7 @@ function HomeScreen(props) {
               >
                 <Text style={[styles.buttonText]}>Play</Text>
               </Button>
-              <Button
+              {/* <Button
                 style={{ alignSelf: 'center' }}
                 onPress={() => {
                   props.navigation.navigate('MenuBar')
@@ -103,7 +103,7 @@ function HomeScreen(props) {
                 >
                   Menu
                 </Text>
-              </Button>
+              </Button> */}
             </Animated.View>
           </Box>
         </Box>

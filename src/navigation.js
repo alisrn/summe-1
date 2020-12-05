@@ -36,11 +36,12 @@ function Navigation() {
           component={GameScreen}
           options={({ route, navigation }) => {
             return {
-              title: '3700',
+              title: 20,
               headerTintColor: theme.colors.pink,
               headerTitleStyle: {
                 fontWeight: 'bold',
-                fontSize: 32
+                fontSize: 32,
+                fontFamily: 'Starjedi'
               },
               headerStyle: {
                 backgroundColor: theme.colors.background,
