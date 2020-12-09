@@ -12,7 +12,7 @@ import Button from './components/button'
 
 import HomeScreen from './views/HomeScreen'
 import ChallengeScreen from './views/ChallengeScreen'
-import GameScreen from './views/GameScreen'
+import GameScreen from './views/GameScreen copy'
 import MenuBar from './views/MenuBar'
 import RateUs from './views/RateUs'
 

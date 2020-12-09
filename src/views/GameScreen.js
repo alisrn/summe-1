@@ -64,18 +64,18 @@ function GameScreen(props) {
       setFirstPressIndex(null)
 
       if (allEqual(forSumList)) {
-        setIsProblemSolved(true)
         props.route.params.updateUserLevel(
           configuredLevel.level + 1,
           leftMoveCount * 100
         )
+        setIsProblemSolved(true)
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      configuredLevel.colNum,
-      configuredLevel.level,
-      configuredLevel.rowNum,
+      //configuredLevel.colNum,
+      //configuredLevel.level,
+      //configuredLevel.rowNum,
       //leftMoveCount,
       props.route.params
     ]
