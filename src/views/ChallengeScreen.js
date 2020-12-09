@@ -53,14 +53,14 @@ function ChallengeScreen(props) {
     }
 
     setUserPoint(parseInt(userPoint) + parseInt(point))
-    await AsyncStorage.removeItem('USER_POINT')
-    console.log('removed')
+    //await AsyncStorage.removeItem('USER_POINT')
+    //console.log('removed')
     try {
       await AsyncStorage.setItem(
         'USER_POINT',
         (parseInt(userPoint) + parseInt(point)).toString()
       )
-      console.log('set user POINT: ' + (userPoint + point))
+      console.log('earned user point: ' + parseInt(point))
     } catch (e) {
       // saving error
       console.log('there is an error on save point.')
@@ -123,11 +123,11 @@ function ChallengeScreen(props) {
         contentOffset={{
           x: 0,
           y:
-            userLevel % 10 != 0 && userLevel % 10 < 5
+            userLevel % 10 !== 0 && userLevel % 10 < 5
               ? 0
               : userLevel % 10 === 0
-                ? 240
-                : 50 + 80 * ((userLevel % 10) - 4)
+              ? 240
+              : 50 + 80 * ((userLevel % 10) - 4)
         }}
         showsVerticalScrollIndicator={false}
         style={{

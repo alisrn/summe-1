@@ -1,422 +1,112 @@
 export const levels = [
-  {
-    level: 1,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 2,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 3,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 4,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 5,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 6,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 7,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 8,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 9,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 10,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 11,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 12,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 13,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 14,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 15,
-    maxNum: 25
-  },
-  {
-    level: 15,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 16,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 17,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 18,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 19,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 20,
-    rowNum: 3,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 21,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 22,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 23,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 24,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 25,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 26,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 27,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 28,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 29,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 30,
-    rowNum: 4,
-    colNum: 3,
-    minNum: 25,
-    maxNum: 45
-  },
-  {
-    level: 31,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 32,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 33,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 34,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 35,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 36,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 37,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 38,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 39,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 30,
-    maxNum: 50
-  },
-  {
-    level: 40,
-    rowNum: 4,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 41,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 42,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 43,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 44,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 45,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 46,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 47,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 48,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 49,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 50,
-    rowNum: 5,
-    colNum: 4,
-    minNum: 40,
-    maxNum: 60
-  },
-  {
-    level: 51,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 52,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 53,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 54,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 55,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 56,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 57,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 58,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 59,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  },
-  {
-    level: 60,
-    rowNum: 5,
-    colNum: 5,
-    minNum: 50,
-    maxNum: 70
-  }
+  { level: 1, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 2, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 3, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 4, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 5, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 6, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 7, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 8, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 9, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 10, rowNum: 2, colNum: 2, minNum: 10, maxNum: 20 },
+  { level: 11, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 12, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 13, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 14, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 15, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 16, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 17, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 18, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 19, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 20, rowNum: 2, colNum: 3, minNum: 20, maxNum: 30 },
+  { level: 21, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 22, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 23, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 24, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 25, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 26, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 27, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 28, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 29, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 30, rowNum: 2, colNum: 4, minNum: 20, maxNum: 30 },
+  { level: 31, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 32, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 33, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 34, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 35, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 36, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 37, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 38, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 39, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 40, rowNum: 3, colNum: 2, minNum: 20, maxNum: 30 },
+  { level: 41, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 42, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 43, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 44, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 45, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 46, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 47, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 48, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 49, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 50, rowNum: 3, colNum: 3, minNum: 40, maxNum: 60 },
+  { level: 51, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 52, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 53, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 54, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 55, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 56, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 57, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 58, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 59, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 60, rowNum: 3, colNum: 4, minNum: 40, maxNum: 70 },
+  { level: 61, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 62, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 63, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 64, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 65, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 66, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 67, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 68, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 69, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 70, rowNum: 4, colNum: 3, minNum: 40, maxNum: 70 },
+  { level: 71, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 72, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 73, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 74, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 75, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 76, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 77, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 78, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 79, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 80, rowNum: 4, colNum: 4, minNum: 60, maxNum: 90 },
+  { level: 81, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 82, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 83, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 84, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 85, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 86, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 87, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 88, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 89, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 90, rowNum: 4, colNum: 4, minNum: 70, maxNum: 100 },
+  { level: 91, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 92, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 93, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 94, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 95, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 96, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 97, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 98, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 99, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 100, rowNum: 5, colNum: 4, minNum: 80, maxNum: 100 },
+  { level: 101, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 102, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 103, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 104, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 105, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 106, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 107, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 108, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 109, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 },
+  { level: 110, rowNum: 5, colNum: 5, minNum: 100, maxNum: 120 }
 ]
