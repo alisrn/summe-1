@@ -8,6 +8,7 @@ import TaleList from '../components/tale-list'
 import Text from '../components/text'
 import theme from '../utils/theme'
 import TimerCountDown from '../components/time-counter'
+import { messageList } from '../messaging/messages'
 
 import { levels } from '../helpers/levels'
 
@@ -30,6 +31,7 @@ export default class GameScreen extends React.Component {
       ),
       leftMoveCount: 20
     }
+    this.timeCountDown = React.createRef()
   }
 
   componentDidMount() {
@@ -140,6 +142,7 @@ export default class GameScreen extends React.Component {
     })
     this.props.navigation.setOptions({ title: 20 })
     this.generateNum()
+    this.timeCountDown.reset()
   }
 
   render() {
@@ -160,7 +163,7 @@ export default class GameScreen extends React.Component {
         />
       )
     })
-
+    let message = messageList.find(x => x.code === '002')
     return (
       <Box flex={1} backgroundColor={theme.colors.background}>
         <Modal
@@ -171,7 +174,7 @@ export default class GameScreen extends React.Component {
           animationOutTiming={500}
           style={styles.nextProblemModal}
         >
-          <Text style={styles.finish}>Mission Complished!</Text>
+          <Text style={styles.finish}>{message.tr}</Text>
 
           <Box>
             <Button
@@ -226,6 +229,9 @@ export default class GameScreen extends React.Component {
           <Box ml={40} alignItems="center">
             <Stopwatch />
             <TimerCountDown
+              ref={c => {
+                this.timeCountDown = c
+              }}
               // eslint-disable-next-line react-native/no-inline-styles
               style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }}
               countFrom={this.state.timer}
