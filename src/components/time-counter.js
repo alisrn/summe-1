@@ -20,6 +20,15 @@ class TimerCountdown extends Component {
     clearInterval(this.interval)
   }
 
+  reset() {
+    clearInterval(this.interval)
+    this.setState({ timer: 0 })
+    this.interval = setInterval(
+      () => this.setState(prevState => ({ timer: prevState.timer + 1 })),
+      1000
+    )
+  }
+
   render() {
     return (
       <Text style={this.props.style}>
