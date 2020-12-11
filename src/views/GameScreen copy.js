@@ -31,11 +31,16 @@ export default class GameScreen extends React.Component {
       ),
       leftMoveCount: 20
     }
-    this.timeCountDown = React.createRef()
   }
 
   componentDidMount() {
     this.generateNum()
+    this.intervalId = null
+    this.intervalId = setInterval(
+      () => this.setState(prevState => ({ timer: prevState.timer - 1 })),
+      1000
+    )
+    console.log('Start interval ' + this.intervalId)
   }
 
   onTalePress = index => {
@@ -56,7 +61,8 @@ export default class GameScreen extends React.Component {
       this.setNewListAndSumList(tempList)
       if (firstIndex !== secondIndex) {
         this.props.navigation.setOptions({
-          title: this.state.leftMoveCount - 1
+          title:
+            this.state.leftMoveCount - 1 >= 0 ? this.state.leftMoveCount - 1 : 0
         })
         this.state.leftMoveCount -= 1
       }
@@ -85,16 +91,48 @@ export default class GameScreen extends React.Component {
     })
 
     if (this.allEqual(forSumList)) {
-      this.props.route.params.updateUserLevel(
-        this.state.configuredLevel.level + 1,
-        this.state.leftMoveCount * 100
-      )
-      this.setState({
-        isProblemSolved: true
-      })
+      this.levelSuccess()
     }
   }
 
+  levelSuccess() {
+    this.leftMoveCount = this.state.leftMoveCount
+    console.log('clear interval ' + this.intervalId)
+    clearInterval(this.intervalId)
+    this.intervalId = null
+
+    this.props.route.params.updateUserLevel(
+      this.state.configuredLevel.level + 1,
+      this.state.leftMoveCount * 100
+    )
+    this.setState({
+      isProblemSolved: true
+    })
+  }
+
+  onSuccessOpen() {
+    if (this.intervalId && this.intervalId != null) {
+      clearInterval(this.intervalId)
+    }
+    if (this.moveCounter && this.moveCounter != null) {
+      clearInterval(this.moveCounter)
+    }
+    if (this.timeCounter && this.timeCounter != null) {
+      clearInterval(this.timeCounter)
+    }
+    this.moveCounter = setInterval(() => {
+      this.leftMoveCount -= 1
+      this.props.navigation.setOptions({
+        title: this.leftMoveCount > 0 ? this.leftMoveCount : 0
+      })
+    }, 100)
+
+    /*     this.timeCounter = setInterval(() => {
+      this.setState(prevState => ({
+        timer: prevState.timer - 1
+      }))
+    }, 10) */
+  }
   generate = (max, thecount) => {
     var r = []
     var currsum = 0
@@ -132,23 +170,41 @@ export default class GameScreen extends React.Component {
 
   onNext = () => {
     this.props.route.params.data = this.state.configuredLevel.level + 1
-    this.setState({
-      configuredLevel: levels.find(
-        x => x.level === this.props.route.params.data
-      ),
-      isProblemSolved: false,
-      leftMoveCount: 20,
-      timer: 100
-    })
-    this.props.navigation.setOptions({ title: 20 })
-    this.generateNum()
-    this.timeCountDown.reset()
+    this.setState(
+      {
+        configuredLevel: levels.find(
+          x => x.level === this.props.route.params.data
+        ),
+        isProblemSolved: false,
+        leftMoveCount: 20,
+        timer: 100
+      },
+      () => {
+        this.props.navigation.setOptions({ title: this.state.leftMoveCount })
+        this.generateNum()
+        clearInterval(this.intervalId)
+        clearInterval(this.moveCounter)
+        this.intervalId = setInterval(() => {
+          this.setState(prevState => ({ timer: prevState.timer - 1 }))
+        }, 1000)
+      }
+    )
+    this.leftMoveCount = 20
   }
 
   render() {
     var foo = []
     for (let i = 0; i < this.state.configuredLevel.rowNum; i++) {
       foo.push(i)
+    }
+
+    /*     if (this.timeCounter <= 0) {
+      clearInterval(this.timeCounter)
+      this.timeCounter == null
+    } */
+
+    if (this.leftMoveCount <= 0) {
+      clearInterval(this.moveCounter)
     }
 
     const taleListObj = foo.map((x, index) => {
@@ -167,11 +223,13 @@ export default class GameScreen extends React.Component {
     return (
       <Box flex={1} backgroundColor={theme.colors.background}>
         <Modal
+          props={this.props}
+          onModalShow={this.onSuccessOpen.bind(this)}
           isVisible={this.state.isProblemSolved}
           animationIn="slideInUp"
-          animationInTiming={500}
+          animationInTiming={700}
           animationOut="slideOutDown"
-          animationOutTiming={500}
+          animationOutTiming={700}
           style={styles.nextProblemModal}
         >
           <Text style={styles.finish}>{message.tr}</Text>
@@ -229,12 +287,9 @@ export default class GameScreen extends React.Component {
           <Box ml={40} alignItems="center">
             <Stopwatch />
             <TimerCountDown
-              ref={c => {
-                this.timeCountDown = c
-              }}
               // eslint-disable-next-line react-native/no-inline-styles
               style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }}
-              countFrom={this.state.timer}
+              timer={this.state.timer > 0 ? this.state.timer : 0}
             />
           </Box>
         </Box>
@@ -256,13 +311,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Starjedi'
   },
   nextProblemModal: {
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     height: WINDOW_HEIGHT / 2,
     maxHeight: WINDOW_HEIGHT / 2,
     width: (WINDOW_WIDTH * 5) / 6,
     alignSelf: 'center',
     alignItems: 'center',
     marginTop: WINDOW_HEIGHT / 4,
-    borderRadius: 5
+    borderRadius: 20
   }
 })
