@@ -16,10 +16,11 @@ import { Stopwatch } from '../components/icons'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
 const WINDOW_HEIGHT = Dimensions.get('window').height
-
+//var _that
 export default class GameScreen extends React.Component {
   constructor(props) {
     super(props)
+    //_that = this
     this.state = {
       firstPressIndex: null,
       numList: [],
@@ -29,7 +30,8 @@ export default class GameScreen extends React.Component {
       configuredLevel: levels.find(
         x => x.level === this.props.route.params.data
       ),
-      leftMoveCount: 20
+      leftMoveCount: 20,
+      gamePoint: 0
     }
   }
 
@@ -126,7 +128,7 @@ export default class GameScreen extends React.Component {
       this.props.navigation.setOptions({
         title: this.leftMoveCount > 0 ? this.leftMoveCount : 0
       })
-      this.setState(prevState => ({ timer: prevState.gamePoint + 100 }))
+      this.setState(prevState => ({ gamePoint: prevState.gamePoint + 100 }))
     }, 100)
   }
 
@@ -139,7 +141,8 @@ export default class GameScreen extends React.Component {
         ),
         isProblemSolved: false,
         leftMoveCount: 20,
-        timer: 100
+        timer: 100,
+        gamePoint: 0
       },
       () => {
         this.props.navigation.setOptions({ title: this.state.leftMoveCount })
@@ -195,6 +198,7 @@ export default class GameScreen extends React.Component {
           style={styles.nextProblemModal}
         >
           <Text style={styles.finish}>{message.tr}</Text>
+          <Text style={styles.finish}>{this.state.gamePoint}</Text>
 
           <Box>
             <Button
