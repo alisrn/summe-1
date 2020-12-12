@@ -34,7 +34,8 @@ export default class GameScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.generateNum()
+    this.setNewListAndSumList(this.state.configuredLevel.levelNumbers)
+    //this.generateNum()
     this.intervalId = null
     this.intervalId = setInterval(
       () => this.setState(prevState => ({ timer: prevState.timer - 1 })),
@@ -125,47 +126,8 @@ export default class GameScreen extends React.Component {
       this.props.navigation.setOptions({
         title: this.leftMoveCount > 0 ? this.leftMoveCount : 0
       })
+      this.setState(prevState => ({ timer: prevState.gamePoint + 100 }))
     }, 100)
-
-    /*     this.timeCounter = setInterval(() => {
-      this.setState(prevState => ({
-        timer: prevState.timer - 1
-      }))
-    }, 10) */
-  }
-  generate = (max, thecount) => {
-    var r = []
-    var currsum = 0
-    for (var i = 0; i < thecount - 1; i++) {
-      r[i] = this.randombetween(1, max - (thecount - i - 1) - currsum)
-      currsum += r[i]
-    }
-    r[thecount - 1] = max - currsum
-    return r
-  }
-
-  randombetween = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  shuffle = array => {
-    array.sort(() => Math.random() - 0.5)
-  }
-
-  generateNum = () => {
-    const defList = []
-    let maxNum =
-      this.state.configuredLevel.minNum +
-      Math.floor(
-        Math.random() *
-          (this.state.configuredLevel.maxNum -
-            this.state.configuredLevel.minNum)
-      )
-    for (let i = 0; i < this.state.configuredLevel.colNum; i++) {
-      defList.push(...this.generate(maxNum, this.state.configuredLevel.rowNum))
-    }
-    this.shuffle(defList)
-    this.setNewListAndSumList(defList)
   }
 
   onNext = () => {
@@ -181,7 +143,7 @@ export default class GameScreen extends React.Component {
       },
       () => {
         this.props.navigation.setOptions({ title: this.state.leftMoveCount })
-        this.generateNum()
+        this.setNewListAndSumList(this.state.configuredLevel.levelNumbers)
         clearInterval(this.intervalId)
         clearInterval(this.moveCounter)
         this.intervalId = setInterval(() => {
@@ -305,7 +267,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   finish: {
-    color: 'white',
+    color: 'black',
     fontSize: 24,
     fontWeight: 'bold',
     fontFamily: 'Starjedi'

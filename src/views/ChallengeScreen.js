@@ -87,7 +87,7 @@ function ChallengeScreen(props) {
           index={item.level}
           isLocked={userLevel < item.level}
           isPassed={userLevel > item.level}
-          isDisabled={userLevel !== item.level}
+          isDisabled={userLevel < item.level}
           onChallengePress={() =>
             props.navigation.navigate('GameScreen', {
               data: item.level,
