@@ -35,6 +35,8 @@ target 'SumMe' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   target 'SumMeTests' do
     inherit! :search_paths
     # Pods for testing
