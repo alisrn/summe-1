@@ -9,6 +9,7 @@ function SumList(props) {
       taleNumList={props.sumList}
       index={0}
       columnCount={props.columnCount}
+      onTalePress={props.onTalePress}
     />
   )
 }

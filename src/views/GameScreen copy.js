@@ -9,7 +9,7 @@ import Text from '../components/text'
 import theme from '../utils/theme'
 import TimerCountDown from '../components/time-counter'
 import { messageList } from '../messaging/messages'
-
+import { playTalePress, playSumTalePress } from '../helpers/audio'
 import { levels } from '../helpers/levels'
 
 import { Stopwatch } from '../components/icons'
@@ -47,6 +47,9 @@ export default class GameScreen extends React.Component {
   }
 
   onTalePress = index => {
+    if (global.userPreferences.sound) {
+      playTalePress()
+    }
     if (
       this.state.firstPressIndex === undefined ||
       this.state.firstPressIndex == null
@@ -242,6 +245,9 @@ export default class GameScreen extends React.Component {
           <SumList
             sumList={this.state.sumList}
             columnCount={this.state.configuredLevel.colNum}
+            onTalePress={index => {
+              global.userPreferences.sound ? playSumTalePress() : null
+            }}
           />
         </Box>
         <Box
