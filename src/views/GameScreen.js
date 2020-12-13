@@ -10,9 +10,11 @@ import theme from '../utils/theme'
 import TimerCountDown from '../components/time-counter'
 import { messageList } from '../messaging/messages'
 import { playTalePress, playSumTalePress } from '../helpers/audio'
-import { levels } from '../helpers/levels'
+import { levels } from '../helpers/levels2'
+import { helpMeOnThisOne } from '../helpers/helpme'
 
 import { Stopwatch } from '../components/icons'
+import { TouchableOpacity } from 'react-native'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
 const WINDOW_HEIGHT = Dimensions.get('window').height
@@ -36,7 +38,9 @@ export default class GameScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.setNewListAndSumList(this.state.configuredLevel.levelNumbers)
+    let levelNumbers = this.state.configuredLevel.levelNumbers.flat(1)
+    this.shuffle(levelNumbers)
+    this.setNewListAndSumList(levelNumbers)
     //this.generateNum()
     this.intervalId = null
     this.intervalId = setInterval(
@@ -44,6 +48,10 @@ export default class GameScreen extends React.Component {
       1000
     )
     console.log('Start interval ' + this.intervalId)
+  }
+
+  shuffle = array => {
+    array.sort(() => Math.random() - 0.5)
   }
 
   onTalePress = index => {
@@ -149,7 +157,9 @@ export default class GameScreen extends React.Component {
       },
       () => {
         this.props.navigation.setOptions({ title: this.state.leftMoveCount })
-        this.setNewListAndSumList(this.state.configuredLevel.levelNumbers)
+        let levelNumbers = this.state.configuredLevel.levelNumbers.flat(1)
+        this.shuffle(levelNumbers)
+        this.setNewListAndSumList(levelNumbers)
         clearInterval(this.intervalId)
         clearInterval(this.moveCounter)
         this.intervalId = setInterval(() => {
@@ -160,6 +170,13 @@ export default class GameScreen extends React.Component {
     this.leftMoveCount = 20
   }
 
+  onHint() {
+    let move = helpMeOnThisOne(this.state.configuredLevel, this.state.numList)
+    this.setState({
+      targetTale: move.indexToBeRetrieved,
+      replacedTale: move.indexToBeReplaced
+    })
+  }
   render() {
     var foo = []
     for (let i = 0; i < this.state.configuredLevel.rowNum; i++) {
@@ -256,6 +273,9 @@ export default class GameScreen extends React.Component {
           left={WINDOW_WIDTH / 2 - 64}
           position="absolute"
         >
+          <TouchableOpacity onPress={this.onHint.bind(this)}>
+            <Text style={styles.finish}>Hint</Text>
+          </TouchableOpacity>
           <Box ml={40} alignItems="center">
             <Stopwatch />
             <TimerCountDown
