@@ -9,21 +9,30 @@ import Text from '../components/text'
 import theme from '../utils/theme'
 
 function MenuBar(props) {
-  const [soundValue, setSoundValue] = React.useState(false)
-  const [musicValue, setMusicValue] = React.useState(false)
+  const [soundValue, setSoundValue] = React.useState(
+    global.userPreferences ? global.userPreferences.sound : true
+  )
+  const [musicValue, setMusicValue] = React.useState(
+    global.userPreferences ? global.userPreferences.music : true
+  )
 
   React.useEffect(() => {
-    getUserPreferences()
+    if (
+      global.userPreferences === undefined ||
+      global.userPreferences === null
+    ) {
+      getUserPreferences()
+    }
   }, [])
 
   const getUserPreferences = async () => {
     try {
-      let user_preference = await AsyncStorage.getItem('USER_PREFERENCES')
-      user_preference = JSON.parse(user_preference)
-      setSoundValue(user_preference.sound)
-      setMusicValue(user_preference.music)
+      global.userPreferences = await AsyncStorage.getItem('USER_PREFERENCES')
+      global.userPreferences = JSON.parse(global.userPreferences)
+      setSoundValue(global.userPreferences.sound)
+      setMusicValue(global.userPreferences.music)
       console.log(
-        'retrieved user PREFERENCE: ' + JSON.stringify(user_preference)
+        'retrieved user PREFERENCE: ' + JSON.stringify(global.userPreferences)
       )
     } catch (e) {
       // saving error
@@ -33,16 +42,17 @@ function MenuBar(props) {
   }
 
   const updateUserPreferences = async (sound, music) => {
-    let preference = {}
-    preference.sound = sound
-    preference.music = music
-    preference = JSON.stringify(preference)
+    global.userPreferences.sound = sound
+    global.userPreferences.music = music
     setMusicValue(music)
     setSoundValue(sound)
 
     try {
-      await AsyncStorage.setItem('USER_PREFERENCES', preference)
-      console.log('set user preferences to: ' + preference)
+      await AsyncStorage.setItem(
+        'USER_PREFERENCES',
+        JSON.stringify(global.userPreferences)
+      )
+      console.log('set user preferences to: ' + global.userPreferences)
     } catch (e) {
       // saving error
       console.log('there is an error on save preferences.')
@@ -95,19 +105,6 @@ function MenuBar(props) {
         >
           <Text color={theme.colors.pink} fontSize={24}>
             Rate to us
-          </Text>
-        </Button>
-      </Box>
-      <Box
-        flex={1}
-        mr={16}
-        mb={75}
-        alignItems="flex-end"
-        justifyContent="flex-end"
-      >
-        <Button onPress={() => props.navigation.navigate('GameScreen')}>
-          <Text color={theme.colors.purple} fontSize={24}>
-            Restart
           </Text>
         </Button>
       </Box>

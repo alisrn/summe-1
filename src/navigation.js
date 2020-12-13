@@ -119,7 +119,7 @@ function Navigation() {
                 <Button
                   px={20}
                   height="100%"
-                  onPress={() => navigation.navigate('HomeScreen')}
+                  onPress={() => navigation.navigate('GameScreen')}
                 >
                   <Left color={theme.colors.blue} />
                 </Button>
