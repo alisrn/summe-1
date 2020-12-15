@@ -33,7 +33,9 @@ export default class GameScreen extends React.Component {
         x => x.level === this.props.route.params.data
       ),
       leftMoveCount: 20,
-      gamePoint: 0
+      gamePoint: 0,
+      targetTale: [-1, -1],
+      replacedTale: [-1, -1]
     }
   }
 
@@ -55,6 +57,7 @@ export default class GameScreen extends React.Component {
   }
 
   onTalePress = index => {
+    this.setState({ targetTale: [-1, -1], replacedTale: [-1, -1] })
     if (global.userPreferences.sound) {
       playTalePress()
     }
@@ -173,6 +176,7 @@ export default class GameScreen extends React.Component {
   onHint() {
     let move = helpMeOnThisOne(this.state.configuredLevel, this.state.numList)
     this.setState({
+      firstPressIndex: null,
       targetTale: move.indexToBeRetrieved,
       replacedTale: move.indexToBeReplaced
     })
@@ -197,6 +201,10 @@ export default class GameScreen extends React.Component {
         <TaleList
           key={index}
           index={index}
+          hintedTales={{
+            target: this.state.targetTale,
+            replaced: this.state.replacedTale
+          }}
           columnCount={this.state.configuredLevel.colNum}
           taleNumList={this.state.numList}
           onTalePress={this.onTalePress}
@@ -274,7 +282,7 @@ export default class GameScreen extends React.Component {
           position="absolute"
         >
           <TouchableOpacity onPress={this.onHint.bind(this)}>
-            <Text style={styles.finish}>Hint</Text>
+            <Text style={styles.hint}>Hint</Text>
           </TouchableOpacity>
           <Box ml={40} alignItems="center">
             <Stopwatch />
@@ -298,6 +306,12 @@ const styles = StyleSheet.create({
   },
   finish: {
     color: 'black',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'Starjedi'
+  },
+  hint: {
+    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
     fontFamily: 'Starjedi'

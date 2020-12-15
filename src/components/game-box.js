@@ -13,7 +13,9 @@ function GameBox(props) {
 
   return (
     <Button
-      backgroundColor={props.pressed ? theme.colors.pink : theme.colors.box}
+      backgroundColor={
+        props.pressed || props.isOnHint ? theme.colors.pink : theme.colors.box
+      }
       borderRadius={5}
       width={props.width ? props.width : 75}
       height={props.height ? props.height : 75}

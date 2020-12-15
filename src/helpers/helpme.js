@@ -59,12 +59,21 @@ const createMove = (situation, current, configuredLevel) => {
   let actual = configuredLevel.levelNumbers
   let currentCol
   let actualCol
-  let flatMatrix = situation.matrix.flat(1)
-  for (let i = 1; i < rowNum; i++) {
-    let indexOfTarget = flatMatrix.findIndex(x => x === rowNum - i)
-    if (indexOfTarget >= 0) {
-      currentCol = Math.floor(indexOfTarget / colNum)
-      actualCol = indexOfTarget % colNum
+  let found = false
+  for (let k = 1; k < rowNum; k++) {
+    for (let i = 0; i < colNum; i++) {
+      if (situation.finishedCols.some(x => x === i)) {
+        continue
+      }
+      let indexOfTarget = situation.matrix[i].findIndex(x => x === rowNum - k)
+      if (indexOfTarget >= 0) {
+        currentCol = i
+        actualCol = indexOfTarget
+        found = true
+        break
+      }
+    }
+    if (found) {
       break
     }
   }
@@ -127,7 +136,7 @@ const findNumberIndex = (current, exceptCol, searchNumber) => {
     foundIndex = flatCurrent.findIndex(x => x === searchNumber)
     foundCol = Math.floor(foundIndex / current.length)
     foundRow = foundIndex % current.length
-    if (exceptCol.find(x => x === foundCol)) {
+    if (exceptCol.findIndex(x => x === foundCol) > -1) {
       flatCurrent[foundIndex] = -1
       foundIndex = -1
     }
