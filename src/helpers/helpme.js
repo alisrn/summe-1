@@ -1,8 +1,10 @@
 const checkCurrentForActuals = (current, actual) => {
-  let someList = new Array(current.length)
+  let someList = new Array(actual.length)
   let finishedCols = []
-  for (var i = 0; i < someList.length; i++) {
-    someList[i] = [0, 0, 0, 0]
+  for (let i = 0; i < actual.length; i++) {
+    someList[i] = []
+    for(let j = 0; j < actual.length; j++)
+    someList[i].push(0)
   }
   current.forEach((currentCol, currIndex) => {
     actual.forEach((actualCol, actIndex) => {
@@ -43,9 +45,9 @@ export const helpMeOnThisOne = (configuredLevel, current) => {
 
 const changeCurrentToCorrectFormat = (current, colNum, rowNum) => {
   let currentInFormat = []
-  for (let i = 0; i < rowNum; i++) {
+  for (let i = 0; i < colNum; i++) {
     let col = []
-    for (let j = 0; j < colNum; j++) {
+    for (let j = 0; j < rowNum; j++) {
       col.push(current[i + j * colNum])
     }
     currentInFormat.push(col)
@@ -134,8 +136,8 @@ const findNumberIndex = (current, exceptCol, searchNumber) => {
   let foundRow = -1
   while (foundIndex < 0) {
     foundIndex = flatCurrent.findIndex(x => x === searchNumber)
-    foundCol = Math.floor(foundIndex / current.length)
-    foundRow = foundIndex % current.length
+    foundCol = Math.floor(foundIndex / current[0].length)
+    foundRow = foundIndex % current[0].length
     if (exceptCol.findIndex(x => x === foundCol) > -1) {
       flatCurrent[foundIndex] = -1
       foundIndex = -1
