@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Dimensions, StyleSheet } from 'react-native'
 import Modal from 'react-native-modal'
 import Box from '../components/box'
@@ -52,6 +52,17 @@ export default class GameScreen extends React.Component {
     console.log('Start interval ' + this.intervalId)
   }
 
+  componentWillUnmount(){
+    if (this.intervalId && this.intervalId != null) {
+      clearInterval(this.intervalId)
+    }
+    if (this.moveCounter && this.moveCounter != null) {
+      clearInterval(this.moveCounter)
+    }
+    if (this.timeCounter && this.timeCounter != null) {
+      clearInterval(this.timeCounter)
+    }
+  }
   shuffle = array => {
     array.sort(() => Math.random() - 0.5)
   }
@@ -75,14 +86,14 @@ export default class GameScreen extends React.Component {
       let temp1 = tempList[firstIndex]
       tempList[firstIndex] = tempList[secondIndex]
       tempList[secondIndex] = temp1
-      this.setNewListAndSumList(tempList)
       if (firstIndex !== secondIndex) {
         this.props.navigation.setOptions({
           title:
-            this.state.leftMoveCount - 1 >= 0 ? this.state.leftMoveCount - 1 : 0
+          this.state.leftMoveCount - 1 >= 0 ? this.state.leftMoveCount - 1 : 0
         })
         this.state.leftMoveCount -= 1
       }
+      this.setNewListAndSumList(tempList)
     }
   }
 
@@ -108,7 +119,13 @@ export default class GameScreen extends React.Component {
     })
 
     if (this.allEqual(forSumList)) {
-      this.levelSuccess()
+      if(this.state.leftMoveCount >= 20){
+        console.log("reshuffling!")
+        this.shuffle(defList)
+        this.setNewListAndSumList(defList)
+      }else{
+        this.levelSuccess()
+      }
     }
   }
 
