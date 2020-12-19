@@ -9,6 +9,7 @@ import {
   Dimensions,
   Easing
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import Button from '../components/button'
 import Box from '../components/box'
@@ -45,7 +46,26 @@ function HomeScreen(props) {
         })
       ]).start()
     }
+    const getUserPreferences = async () => {
+      try {
+        global.userPreferences = await AsyncStorage.getItem('USER_PREFERENCES')
+        global.userPreferences = JSON.parse(global.userPreferences)
+        if(global.userPreferences === null){
+          global.userPreferences = {
+            sound:true,
+            music:true
+          }
+        }
+        console.log(
+        'retrieved user PREFERENCE: ' + JSON.stringify(global.userPreferences)
+        )
+    } catch (e) {
+      // saving error
+      console.log('there is an error on getting user PREFERENCE.')
+      console.log(e)
+    }}
     moveLR()
+    getUserPreferences()
   }, [enteranceVal, scaleValue, yValue])
   return (
     <Box style={styles.homePage}>
