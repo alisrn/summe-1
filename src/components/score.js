@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import Text from './text'
 import Box from './box'
 
@@ -41,8 +41,10 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: 'white',
+    alignSelf: 'flex-end',
+    paddingRight: 5,
     position: 'absolute',
-    fontSize: 24
+    fontSize: 18
   }
 })
 

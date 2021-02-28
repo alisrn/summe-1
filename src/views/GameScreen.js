@@ -19,13 +19,9 @@ import Hint from '../components/hint'
 import Sound from '../components/sound'
 import theme from '../utils/theme'
 import TimerCountDown from '../components/time-counter'
-import { messageList } from '../messaging/messages'
 import { playTalePress, playSumTalePress } from '../helpers/audio'
 import { levels } from '../helpers/levels2'
 import { helpMeOnThisOne } from '../helpers/helpme'
-
-import { TouchableOpacity } from 'react-native'
-import { marginTop } from 'styled-system'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
 const WINDOW_HEIGHT = Dimensions.get('window').height
@@ -43,6 +39,7 @@ export default class GameScreen extends React.Component {
       configuredLevel: levels.find(
         x => x.level === this.props.route.params.data
       ),
+      userPoint: parseInt(this.props.route.params.userPoint, 10),
       leftMoveCount: 20,
       gamePoint: 0,
       targetTale: [-1, -1],
@@ -171,7 +168,10 @@ export default class GameScreen extends React.Component {
       this.props.navigation.setOptions({
         title: this.leftMoveCount > 0 ? this.leftMoveCount : 0
       })
-      this.setState(prevState => ({ gamePoint: prevState.gamePoint + 100 }))
+      this.setState(prevState => ({
+        gamePoint: prevState.gamePoint + 100,
+        userPoint: prevState.userPoint + 100
+      }))
     }, 100)
   }
 
@@ -252,7 +252,6 @@ export default class GameScreen extends React.Component {
         />
       )
     })
-    let message = messageList.find(x => x.code === '002')
     return (
       <Box style={{ flex: 1 }}>
         <ImageBackground
@@ -317,7 +316,7 @@ export default class GameScreen extends React.Component {
           </Modal>
           <Box justifyContent="center" marginTop={20}>
             <Score
-              point={this.state.gamePoint}
+              point={this.state.userPoint}
               style={{
                 alignSelf: 'flex-start',
                 position: 'absolute',

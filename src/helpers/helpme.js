@@ -3,8 +3,9 @@ const checkCurrentForActuals = (current, actual) => {
   let finishedCols = []
   for (let i = 0; i < actual.length; i++) {
     someList[i] = []
-    for(let j = 0; j < actual.length; j++)
-    someList[i].push(0)
+    for (let j = 0; j < actual.length; j++) {
+      someList[i].push(0)
+    }
   }
   current.forEach((currentCol, currIndex) => {
     actual.forEach((actualCol, actIndex) => {
