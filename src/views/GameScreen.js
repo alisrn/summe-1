@@ -270,22 +270,50 @@ export default class GameScreen extends React.Component {
             animationOutTiming={700}
             style={styles.nextProblemModal}
           >
-            <Text style={styles.finish}>{message.tr}</Text>
-            <Text style={styles.finish}>{this.state.gamePoint}</Text>
-
-            <Box>
-              <Button
-                justifyContent="center"
-                mt={15}
-                width={WINDOW_WIDTH / 2}
-                height={50}
-                borderRadius="full"
-                bg="#F433A0"
-                onPress={this.onNext}
+            <ImageBackground
+              source={require('../assets/designs/Level_Complete_bg.png')}
+              style={styles.imageModal}
+            >
+              <Box
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: 180
+                }}
               >
-                <Text style={styles.buttonText}>Next</Text>
-              </Button>
-            </Box>
+                <Text style={styles.finish}>level</Text>
+                <Text style={styles.finish}>complete</Text>
+                <Image
+                  source={require('../assets/designs/Chest_item.png')}
+                  style={{
+                    height: 140,
+                    resizeMode: 'contain',
+                    marginTop: 20
+                  }}
+                />
+                <Box
+                  style={{
+                    flexDirection: 'row',
+                    marginTop: 20,
+                    alignItems: 'center'
+                  }}
+                >
+                  <Image
+                    source={require('../assets/designs/Star_icon.png')}
+                    style={{
+                      height: 35,
+                      resizeMode: 'contain'
+                    }}
+                  />
+                  <Text style={styles.finish}>{this.state.gamePoint}</Text>
+                </Box>
+                <Box>
+                  <Button style={styles.nextButton} onPress={this.onNext}>
+                    <Text style={styles.buttonText}>Next</Text>
+                  </Button>
+                </Box>
+              </Box>
+            </ImageBackground>
           </Modal>
           <Box justifyContent="center" marginTop={20}>
             <Score
@@ -378,12 +406,12 @@ export default class GameScreen extends React.Component {
 
 const styles = StyleSheet.create({
   buttonText: {
-    color: 'white',
+    color: '#3C7882',
     fontSize: 24,
     fontWeight: 'bold'
   },
   finish: {
-    color: 'black',
+    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
     fontFamily: 'Starjedi'
@@ -392,17 +420,32 @@ const styles = StyleSheet.create({
     margin: 40
   },
   nextProblemModal: {
-    backgroundColor: 'white',
-    height: WINDOW_HEIGHT / 2,
+    //backgroundColor: 'white',
+    height: (WINDOW_HEIGHT * 4) / 5,
     maxHeight: WINDOW_HEIGHT / 2,
-    width: (WINDOW_WIDTH * 5) / 6,
+    //width: (WINDOW_WIDTH * 5) / 6,
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: WINDOW_HEIGHT / 4,
+    marginTop: WINDOW_HEIGHT / 8,
     borderRadius: 20
   },
   image: {
     flex: 1,
     resizeMode: 'cover'
+  },
+  imageModal: {
+    flex: 1,
+    height: (WINDOW_HEIGHT * 2) / 3,
+    width: (WINDOW_WIDTH * 5) / 6,
+    resizeMode: 'contain'
+  },
+  nextButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: 80,
+    width: WINDOW_WIDTH / 2,
+    height: 50,
+    borderRadius: 25,
+    color: '#C73A1F'
   }
 })
