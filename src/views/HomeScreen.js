@@ -3,7 +3,6 @@
 import React from 'react'
 import {
   Animated,
-  Text,
   StyleSheet,
   StatusBar,
   ImageBackground,

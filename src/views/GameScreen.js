@@ -2,10 +2,8 @@
 import React from 'react'
 import {
   Dimensions,
-  StatusBar,
   ImageBackground,
   StyleSheet,
-  View,
   Image,
   SafeAreaView
 } from 'react-native'
@@ -17,6 +15,8 @@ import TaleList from '../components/tale-list'
 import Text from '../components/text'
 import Score from '../components/score'
 import Textbg from '../components/textbg'
+import Hint from '../components/hint'
+import Sound from '../components/sound'
 import theme from '../utils/theme'
 import TimerCountDown from '../components/time-counter'
 import { messageList } from '../messaging/messages'
@@ -24,9 +24,8 @@ import { playTalePress, playSumTalePress } from '../helpers/audio'
 import { levels } from '../helpers/levels2'
 import { helpMeOnThisOne } from '../helpers/helpme'
 
-import { Stopwatch } from '../components/icons'
 import { TouchableOpacity } from 'react-native'
-import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
+import { marginTop } from 'styled-system'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
 const WINDOW_HEIGHT = Dimensions.get('window').height
@@ -47,7 +46,8 @@ export default class GameScreen extends React.Component {
       leftMoveCount: 20,
       gamePoint: 0,
       targetTale: [-1, -1],
-      replacedTale: [-1, -1]
+      replacedTale: [-1, -1],
+      sound: global.userPreferences.sound
     }
   }
 
@@ -210,6 +210,17 @@ export default class GameScreen extends React.Component {
       replacedTale: move.indexToBeReplaced
     })
   }
+
+  onSoundChange() {
+    global.userPreferences.sound = !global.userPreferences.sound
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        sound: !prevState.sound
+      }
+    })
+  }
+
   render() {
     var foo = []
     for (let i = 0; i < this.state.configuredLevel.rowNum; i++) {
@@ -245,7 +256,7 @@ export default class GameScreen extends React.Component {
     return (
       <Box style={{ flex: 1 }}>
         <ImageBackground
-          source={require('../assets/designs/start_bg.png')}
+          source={require('../assets/designs/Game_background.png')}
           style={styles.image}
         >
           <SafeAreaView barStyle="light-content" />
@@ -279,7 +290,11 @@ export default class GameScreen extends React.Component {
           <Box justifyContent="center" marginTop={20}>
             <Score
               point={this.state.gamePoint}
-              style={{ alignSelf: 'flex-start', position: 'absolute' }}
+              style={{
+                alignSelf: 'flex-start',
+                position: 'absolute',
+                marginLeft: 10
+              }}
             />
             <Textbg
               text={'LEVEL'}
@@ -313,12 +328,13 @@ export default class GameScreen extends React.Component {
           >
             <Box alignItems="center">{taleListObj}</Box>
           </Box>
-          <Box
-            alignSelf="center"
-            borderWidth={2}
-            borderColor={theme.colors.pink}
-            width={WINDOW_WIDTH - 80}
-            mt={25 - (this.state.configuredLevel.colNum - 3) * 5}
+          <Image
+            source={require('../assets/designs/Line_item.png')}
+            style={{
+              alignSelf: 'center',
+              width: WINDOW_WIDTH - 80,
+              marginTop: 25 - (this.state.configuredLevel.colNum - 3) * 5
+            }}
           />
           <Box ml={50}>
             <SumList
@@ -329,27 +345,30 @@ export default class GameScreen extends React.Component {
               }}
             />
           </Box>
+
+          <Box alignItems="center">
+            <TimerCountDown
+              style={{
+                fontSize: 18,
+                color: theme.colors.pink,
+                marginTop: 40
+              }}
+              point={this.state.timer > 0 ? this.state.timer : 0}
+            />
+          </Box>
           <Box
-            flexDirection="row"
-            top={WINDOW_HEIGHT - 200}
-            left={WINDOW_WIDTH / 2 - 64}
-            position="absolute"
+            style={{
+              flex: 1,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexDirection: 'row'
+            }}
           >
-            <TouchableOpacity onPress={this.onHint.bind(this)}>
-              <Text style={styles.hint}>Hint</Text>
-            </TouchableOpacity>
-            <Box ml={40} alignItems="center">
-              <Stopwatch />
-              <TimerCountDown
-                // eslint-disable-next-line react-native/no-inline-styles
-                style={{
-                  fontSize: 18,
-                  color: theme.colors.pink,
-                  marginTop: 10
-                }}
-                timer={this.state.timer > 0 ? this.state.timer : 0}
-              />
-            </Box>
+            <Sound
+              onPress={this.onSoundChange.bind(this)}
+              soundOn={this.state.sound}
+            />
+            <Hint onPress={this.onHint.bind(this)} />
           </Box>
         </ImageBackground>
       </Box>
@@ -370,10 +389,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Starjedi'
   },
   hint: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-    fontFamily: 'Starjedi'
+    margin: 40
   },
   nextProblemModal: {
     backgroundColor: 'white',
