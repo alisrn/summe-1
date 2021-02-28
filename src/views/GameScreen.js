@@ -1,11 +1,22 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react'
-import { Dimensions, StyleSheet } from 'react-native'
+import {
+  Dimensions,
+  StatusBar,
+  ImageBackground,
+  StyleSheet,
+  View,
+  Image,
+  SafeAreaView
+} from 'react-native'
 import Modal from 'react-native-modal'
 import Box from '../components/box'
 import Button from '../components/button'
 import SumList from '../components/sum-list'
 import TaleList from '../components/tale-list'
 import Text from '../components/text'
+import Score from '../components/score'
+import Textbg from '../components/textbg'
 import theme from '../utils/theme'
 import TimerCountDown from '../components/time-counter'
 import { messageList } from '../messaging/messages'
@@ -15,6 +26,7 @@ import { helpMeOnThisOne } from '../helpers/helpme'
 
 import { Stopwatch } from '../components/icons'
 import { TouchableOpacity } from 'react-native'
+import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
 const WINDOW_HEIGHT = Dimensions.get('window').height
@@ -52,7 +64,7 @@ export default class GameScreen extends React.Component {
     console.log('Start interval ' + this.intervalId)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     if (this.intervalId && this.intervalId != null) {
       clearInterval(this.intervalId)
     }
@@ -89,7 +101,7 @@ export default class GameScreen extends React.Component {
       if (firstIndex !== secondIndex) {
         this.props.navigation.setOptions({
           title:
-          this.state.leftMoveCount - 1 >= 0 ? this.state.leftMoveCount - 1 : 0
+            this.state.leftMoveCount - 1 >= 0 ? this.state.leftMoveCount - 1 : 0
         })
         this.state.leftMoveCount -= 1
       }
@@ -119,11 +131,11 @@ export default class GameScreen extends React.Component {
     })
 
     if (this.allEqual(forSumList)) {
-      if(this.state.leftMoveCount >= 20){
-        console.log("reshuffling!")
+      if (this.state.leftMoveCount >= 20) {
+        console.log('reshuffling!')
         this.shuffle(defList)
         this.setNewListAndSumList(defList)
-      }else{
+      } else {
         this.levelSuccess()
       }
     }
@@ -231,85 +243,115 @@ export default class GameScreen extends React.Component {
     })
     let message = messageList.find(x => x.code === '002')
     return (
-      <Box flex={1} backgroundColor={theme.colors.background}>
-        <Modal
-          props={this.props}
-          onModalShow={this.onSuccessOpen.bind(this)}
-          isVisible={this.state.isProblemSolved}
-          animationIn="slideInUp"
-          animationInTiming={700}
-          animationOut="slideOutDown"
-          animationOutTiming={700}
-          style={styles.nextProblemModal}
+      <Box style={{ flex: 1 }}>
+        <ImageBackground
+          source={require('../assets/designs/start_bg.png')}
+          style={styles.image}
         >
-          <Text style={styles.finish}>{message.tr}</Text>
-          <Text style={styles.finish}>{this.state.gamePoint}</Text>
+          <SafeAreaView barStyle="light-content" />
+          <Modal
+            props={this.props}
+            onModalShow={this.onSuccessOpen.bind(this)}
+            isVisible={this.state.isProblemSolved}
+            animationIn="slideInUp"
+            animationInTiming={700}
+            animationOut="slideOutDown"
+            animationOutTiming={700}
+            style={styles.nextProblemModal}
+          >
+            <Text style={styles.finish}>{message.tr}</Text>
+            <Text style={styles.finish}>{this.state.gamePoint}</Text>
 
-          <Box>
-            <Button
-              justifyContent="center"
-              mt={15}
-              width={WINDOW_WIDTH / 2}
-              height={50}
-              borderRadius="full"
-              bg="#F433A0"
-              onPress={this.onNext}
-            >
-              <Text style={styles.buttonText}>Next</Text>
-            </Button>
-          </Box>
-        </Modal>
-        <Box mt={10} flexDirection="row" alignItems="center">
-          <Text fontSize={18} color={theme.colors.pink} ml={20} mr={15}>
-            LEVEL {this.state.configuredLevel.level} -{' '}
-            {this.state.configuredLevel.colNum} x{' '}
-            {this.state.configuredLevel.rowNum}
-          </Text>
-        </Box>
-        <Box
-          mt={
-            this.state.configuredLevel.rowNum >
-            this.state.configuredLevel.colNum
-              ? 30
-              : 100
-          }
-        >
-          <Box alignItems="center">{taleListObj}</Box>
-        </Box>
-        <Box
-          alignSelf="center"
-          borderWidth={2}
-          borderColor={theme.colors.pink}
-          width={WINDOW_WIDTH - 80}
-          mt={25 - (this.state.configuredLevel.colNum - 3) * 5}
-        />
-        <Box ml={50}>
-          <SumList
-            sumList={this.state.sumList}
-            columnCount={this.state.configuredLevel.colNum}
-            onTalePress={index => {
-              global.userPreferences.sound ? playSumTalePress() : null
-            }}
-          />
-        </Box>
-        <Box
-          flexDirection="row"
-          top={WINDOW_HEIGHT - 200}
-          left={WINDOW_WIDTH / 2 - 64}
-          position="absolute"
-        >
-          <TouchableOpacity onPress={this.onHint.bind(this)}>
-            <Text style={styles.hint}>Hint</Text>
-          </TouchableOpacity>
-          <Box ml={40} alignItems="center">
-            <Stopwatch />
-            <TimerCountDown
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{ fontSize: 18, color: theme.colors.pink, marginTop: 10 }}
-              timer={this.state.timer > 0 ? this.state.timer : 0}
+            <Box>
+              <Button
+                justifyContent="center"
+                mt={15}
+                width={WINDOW_WIDTH / 2}
+                height={50}
+                borderRadius="full"
+                bg="#F433A0"
+                onPress={this.onNext}
+              >
+                <Text style={styles.buttonText}>Next</Text>
+              </Button>
+            </Box>
+          </Modal>
+          <Box justifyContent="center" marginTop={20}>
+            <Score
+              point={this.state.gamePoint}
+              style={{ alignSelf: 'flex-start', position: 'absolute' }}
+            />
+            <Textbg
+              text={'LEVEL'}
+              level={this.state.configuredLevel.level}
+              style={{ alignSelf: 'center' }}
+            />
+            <Image
+              source={require('../assets/designs/Menu_button.png')}
+              style={{
+                height: 45,
+                resizeMode: 'contain',
+                alignSelf: 'flex-end',
+                position: 'absolute'
+              }}
             />
           </Box>
-        </Box>
+
+          <Box marginTop={70}>
+            <Textbg
+              text={this.state.leftMoveCount}
+              textStyle={{ fontSize: 30 }}
+            />
+          </Box>
+          <Box
+            mt={
+              this.state.configuredLevel.rowNum >
+              this.state.configuredLevel.colNum
+                ? 30
+                : 80
+            }
+          >
+            <Box alignItems="center">{taleListObj}</Box>
+          </Box>
+          <Box
+            alignSelf="center"
+            borderWidth={2}
+            borderColor={theme.colors.pink}
+            width={WINDOW_WIDTH - 80}
+            mt={25 - (this.state.configuredLevel.colNum - 3) * 5}
+          />
+          <Box ml={50}>
+            <SumList
+              sumList={this.state.sumList}
+              columnCount={this.state.configuredLevel.colNum}
+              onTalePress={index => {
+                global.userPreferences.sound ? playSumTalePress() : null
+              }}
+            />
+          </Box>
+          <Box
+            flexDirection="row"
+            top={WINDOW_HEIGHT - 200}
+            left={WINDOW_WIDTH / 2 - 64}
+            position="absolute"
+          >
+            <TouchableOpacity onPress={this.onHint.bind(this)}>
+              <Text style={styles.hint}>Hint</Text>
+            </TouchableOpacity>
+            <Box ml={40} alignItems="center">
+              <Stopwatch />
+              <TimerCountDown
+                // eslint-disable-next-line react-native/no-inline-styles
+                style={{
+                  fontSize: 18,
+                  color: theme.colors.pink,
+                  marginTop: 10
+                }}
+                timer={this.state.timer > 0 ? this.state.timer : 0}
+              />
+            </Box>
+          </Box>
+        </ImageBackground>
       </Box>
     )
   }
@@ -342,5 +384,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: WINDOW_HEIGHT / 4,
     borderRadius: 20
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'cover'
   }
 })

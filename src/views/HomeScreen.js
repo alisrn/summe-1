@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react'
 import {
@@ -22,6 +23,8 @@ function HomeScreen(props) {
   let yValue = new Animated.Value(0)
   let scaleValue = new Animated.Value(0)
   let enteranceVal = new Animated.Value(0)
+  const [userLevel, setUserLevel] = React.useState(0)
+  const [userPoint, setUserPoint] = React.useState(0)
 
   React.useEffect(() => {
     const moveLR = () => {
@@ -47,6 +50,26 @@ function HomeScreen(props) {
         })
       ]).start()
     }
+    const getUserInfo = async () => {
+      try {
+        const level = await AsyncStorage.getItem('USER_LEVEL')
+        setUserLevel(level ? parseInt(level) : 1)
+        console.log('retrieved user level: ' + level)
+        console.log(userLevel)
+      } catch (e) {
+        // saving error
+        console.log('there is an error on getting user level.')
+        console.log(e)
+      }
+      try {
+        const point = await AsyncStorage.getItem('USER_POINT')
+        setUserPoint(point ? point : 0)
+        console.log('retrieved user point: ' + point)
+      } catch (error) {
+        console.log('there is an error on getting user point.')
+        console.log(error)
+      }
+    }
     const getUserPreferences = async () => {
       try {
         global.userPreferences = await AsyncStorage.getItem('USER_PREFERENCES')
@@ -68,7 +91,37 @@ function HomeScreen(props) {
     }
     moveLR()
     getUserPreferences()
-  }, [enteranceVal, scaleValue, yValue])
+    getUserInfo()
+  }, [enteranceVal, scaleValue, yValue, userLevel])
+
+  const updateUserLevelAndPoint = async (level, point) => {
+    if (level > userLevel) {
+      setUserLevel(level)
+      try {
+        await AsyncStorage.setItem('USER_LEVEL', level.toString())
+        console.log('set user level: ' + level.toString())
+      } catch (e) {
+        // saving error
+        console.log('there is an error on save level.')
+      }
+    }
+
+    setUserPoint(parseInt(userPoint) + parseInt(point))
+    //await AsyncStorage.removeItem('USER_POINT')
+    //console.log('removed')
+    try {
+      await AsyncStorage.setItem(
+        'USER_POINT',
+        (parseInt(userPoint) + parseInt(point)).toString()
+      )
+      console.log('earned user point: ' + parseInt(point))
+    } catch (e) {
+      // saving error
+      console.log('there is an error on save point.')
+      console.log(e)
+    }
+  }
+
   return (
     <Box style={styles.homePage}>
       <ImageBackground
@@ -108,7 +161,11 @@ function HomeScreen(props) {
                   justifyContent: 'center'
                 }}
                 onPress={() => {
-                  props.navigation.navigate('Challenges')
+                  props.navigation.navigate('GameScreen', {
+                    data: userLevel,
+                    updateUserLevel: updateUserLevelAndPoint,
+                    userPoint: userPoint
+                  })
                 }}
               >
                 <Image

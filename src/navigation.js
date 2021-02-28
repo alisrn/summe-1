@@ -36,40 +36,7 @@ function Navigation() {
           component={GameScreen}
           options={({ route, navigation }) => {
             return {
-              title: 20,
-              headerTintColor: theme.colors.pink,
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 32,
-                fontFamily: 'Starjedi'
-              },
-              headerStyle: {
-                backgroundColor: theme.colors.background,
-                shadowColor: 'transparent'
-              },
-              headerLeft: () => (
-                <Button
-                  px={20}
-                  height="100%"
-                  onPress={() => navigation.navigate('Challenges')}
-                >
-                  <Image source={require('./assets/small-logo.png')} />
-                </Button>
-              ),
-              headerRight: () => (
-                <Button onPress={() => navigation.navigate('MenuBar')}>
-                  <Text
-                    style={{
-                      color: '#4658FF',
-                      fontSize: 24,
-                      fontWeight: 'bold',
-                      marginRight: 13
-                    }}
-                  >
-                    Menu
-                  </Text>
-                </Button>
-              )
+              headerShown: false
             }
           }}
         />
