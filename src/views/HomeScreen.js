@@ -72,7 +72,7 @@ function HomeScreen(props) {
   return (
     <Box style={styles.homePage}>
       <ImageBackground
-        source={require('../pngs/start_bg.png')}
+        source={require('../assets/designs/start_bg.png')}
         style={styles.image}
       >
         <StatusBar barStyle="light-content" />
@@ -87,7 +87,7 @@ function HomeScreen(props) {
               //width: 50,
               resizeMode: 'contain'
             }}
-            source={require('../pngs/logo.png')}
+            source={require('../assets/designs/logo.png')}
           />
 
           <Box>
@@ -112,7 +112,7 @@ function HomeScreen(props) {
                 }}
               >
                 <Image
-                  source={require('../pngs/Large_Play_button.png')}
+                  source={require('../assets/designs/Large_Play_button.png')}
                   style={{
                     height: 80,
                     //width: 50,
