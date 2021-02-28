@@ -7,7 +7,8 @@ import {
   StatusBar,
   ImageBackground,
   Dimensions,
-  Easing
+  Easing,
+  Image
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -50,27 +51,28 @@ function HomeScreen(props) {
       try {
         global.userPreferences = await AsyncStorage.getItem('USER_PREFERENCES')
         global.userPreferences = JSON.parse(global.userPreferences)
-        if(global.userPreferences === null){
+        if (global.userPreferences === null) {
           global.userPreferences = {
-            sound:true,
-            music:true
+            sound: true,
+            music: true
           }
         }
         console.log(
-        'retrieved user PREFERENCE: ' + JSON.stringify(global.userPreferences)
+          'retrieved user PREFERENCE: ' + JSON.stringify(global.userPreferences)
         )
-    } catch (e) {
-      // saving error
-      console.log('there is an error on getting user PREFERENCE.')
-      console.log(e)
-    }}
+      } catch (e) {
+        // saving error
+        console.log('there is an error on getting user PREFERENCE.')
+        console.log(e)
+      }
+    }
     moveLR()
     getUserPreferences()
   }, [enteranceVal, scaleValue, yValue])
   return (
     <Box style={styles.homePage}>
       <ImageBackground
-        source={require('../assets/bg3.jpg')}
+        source={require('../pngs/start_bg.png')}
         style={styles.image}
       >
         <StatusBar barStyle="light-content" />
@@ -80,15 +82,18 @@ function HomeScreen(props) {
               alignSelf: 'center',
               marginTop: 100,
               transform: [{ translateY: yValue }],
-              opacity: enteranceVal
+              opacity: enteranceVal,
+              height: 80,
+              //width: 50,
+              resizeMode: 'contain'
             }}
-            source={require('../assets/logo.png')}
+            source={require('../pngs/logo.png')}
           />
 
           <Box>
             <Animated.View
               style={{
-                marginTop: -70,
+                marginTop: -140,
                 opacity: scaleValue
                 /* transform: [{ scale: scaleValue }] */
               }}
@@ -97,8 +102,8 @@ function HomeScreen(props) {
                 style={{
                   alignSelf: 'center',
                   //borderWidth: 1,
-                  backgroundColor: '#ED36BA',
-                  width: WINDOW_WIDTH / 2,
+                  //backgroundColor: '#ED36BA',
+                  width: WINDOW_WIDTH / 5,
                   borderRadius: 20,
                   justifyContent: 'center'
                 }}
@@ -106,23 +111,16 @@ function HomeScreen(props) {
                   props.navigation.navigate('Challenges')
                 }}
               >
-                <Text style={[styles.buttonText]}>Play</Text>
+                <Image
+                  source={require('../pngs/Large_Play_button.png')}
+                  style={{
+                    height: 80,
+                    //width: 50,
+                    resizeMode: 'contain'
+                  }}
+                />
+                {/* <Text style={[styles.buttonText]}>Play</Text> */}
               </Button>
-              {/* <Button
-                style={{ alignSelf: 'center' }}
-                onPress={() => {
-                  props.navigation.navigate('MenuBar')
-                }}
-              >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    { color: '#3B4AE6', fontWeight: 'bold' }
-                  ]}
-                >
-                  Menu
-                </Text>
-              </Button> */}
             </Animated.View>
           </Box>
         </Box>
