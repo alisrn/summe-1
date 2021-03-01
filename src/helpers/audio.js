@@ -4,7 +4,7 @@ Sound.setCategory('Ambient', true)
 
 const talePress = new Sound(
   require('../assets/musics/on_click_tale.mp3'),
-  error => console.log(error)
+  error => (error !== null ? console.log('audio' + error) : null)
 )
 export const playTalePress = () => {
   talePress.play(success => talePress.reset())
@@ -12,7 +12,7 @@ export const playTalePress = () => {
 
 const sumTalePress = new Sound(
   require('../assets/musics/on_click_sum_tale.mp3'),
-  error => console.log(error)
+  error => (error !== null ? console.log('audio' + error) : null)
 )
 export const playSumTalePress = () => {
   sumTalePress.play(success => sumTalePress.reset())

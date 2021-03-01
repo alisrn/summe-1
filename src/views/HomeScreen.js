@@ -49,12 +49,15 @@ function HomeScreen(props) {
         })
       ]).start()
     }
+    moveLR()
+  })
+
+  React.useEffect(() => {
     const getUserInfo = async () => {
       try {
         const level = await AsyncStorage.getItem('USER_LEVEL')
         setUserLevel(level ? parseInt(level) : 1)
         console.log('retrieved user level: ' + level)
-        console.log(userLevel)
       } catch (e) {
         // saving error
         console.log('there is an error on getting user level.')
@@ -62,7 +65,7 @@ function HomeScreen(props) {
       }
       try {
         const point = await AsyncStorage.getItem('USER_POINT')
-        setUserPoint(point ? point : 0)
+        setUserPoint(point ? parseInt(point, 10) : 0)
         console.log('retrieved user point: ' + point)
       } catch (error) {
         console.log('there is an error on getting user point.')
@@ -88,14 +91,14 @@ function HomeScreen(props) {
         console.log(e)
       }
     }
-    moveLR()
     getUserPreferences()
     getUserInfo()
-  }, [enteranceVal, scaleValue, yValue, userLevel])
+  }, [])
 
   const updateUserLevelAndPoint = async (level, point) => {
     if (level > userLevel) {
       setUserLevel(level)
+      setUserPoint(point)
       try {
         await AsyncStorage.setItem('USER_LEVEL', level.toString())
         console.log('set user level: ' + level.toString())
@@ -105,15 +108,11 @@ function HomeScreen(props) {
       }
     }
 
-    setUserPoint(parseInt(userPoint) + parseInt(point))
     //await AsyncStorage.removeItem('USER_POINT')
     //console.log('removed')
     try {
-      await AsyncStorage.setItem(
-        'USER_POINT',
-        (parseInt(userPoint) + parseInt(point)).toString()
-      )
-      console.log('earned user point: ' + parseInt(point))
+      await AsyncStorage.setItem('USER_POINT', point.toString())
+      console.log('earned user point: ' + point.toString())
     } catch (e) {
       // saving error
       console.log('there is an error on save point.')

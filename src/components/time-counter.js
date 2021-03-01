@@ -1,19 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Image, Text, StyleSheet } from 'react-native'
 import Box from './box'
 
 function TimerCountdown(props) {
   return (
     <Box style={[styles.container, { ...props.style }]}>
-      <Image
+      {/*       <Image
         source={require('../assets/designs/Text_bg.png')}
         style={styles.textbgStyle}
-      />
+      /> */}
       <Image
         source={require('../assets/designs/Time_icon.png')}
         style={styles.iconStyle}
       />
-
       <Text style={styles.textStyle}>{props.point}</Text>
     </Box>
   )
@@ -33,16 +32,16 @@ const styles = StyleSheet.create({
     //marginLeft: -20
   },
   iconStyle: {
-    marginRight: 100,
+    //marginRight: 100,
     height: 70,
-    resizeMode: 'contain'
-    //position: 'absolute'
+    resizeMode: 'contain',
+    position: 'absolute'
   },
   textStyle: {
-    color: 'white',
+    color: 'black',
     position: 'absolute',
-    fontSize: 24,
-    paddingLeft: 20
+    fontSize: 24
+    //paddingLeft: 20
   }
 })
 

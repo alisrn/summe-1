@@ -58,7 +58,6 @@ export default class GameScreen extends React.Component {
       () => this.setState(prevState => ({ timer: prevState.timer - 1 })),
       1000
     )
-    console.log('Start interval ' + this.intervalId)
   }
 
   componentWillUnmount() {
@@ -96,10 +95,6 @@ export default class GameScreen extends React.Component {
       tempList[firstIndex] = tempList[secondIndex]
       tempList[secondIndex] = temp1
       if (firstIndex !== secondIndex) {
-        this.props.navigation.setOptions({
-          title:
-            this.state.leftMoveCount - 1 >= 0 ? this.state.leftMoveCount - 1 : 0
-        })
         this.state.leftMoveCount -= 1
       }
       this.setNewListAndSumList(tempList)
@@ -129,7 +124,6 @@ export default class GameScreen extends React.Component {
 
     if (this.allEqual(forSumList)) {
       if (this.state.leftMoveCount >= 20) {
-        console.log('reshuffling!')
         this.shuffle(defList)
         this.setNewListAndSumList(defList)
       } else {
@@ -140,13 +134,13 @@ export default class GameScreen extends React.Component {
 
   levelSuccess() {
     this.leftMoveCount = this.state.leftMoveCount
-    console.log('clear interval ' + this.intervalId)
+    this.totalUserPoint = this.state.userPoint + this.state.leftMoveCount * 100
     clearInterval(this.intervalId)
     this.intervalId = null
 
     this.props.route.params.updateUserLevel(
       this.state.configuredLevel.level + 1,
-      this.state.leftMoveCount * 100
+      this.state.userPoint + this.state.leftMoveCount * 100
     )
     this.setState({
       isProblemSolved: true
@@ -185,10 +179,10 @@ export default class GameScreen extends React.Component {
         isProblemSolved: false,
         leftMoveCount: 20,
         timer: 100,
-        gamePoint: 0
+        gamePoint: 0,
+        userPoint: this.totalUserPoint
       },
       () => {
-        this.props.navigation.setOptions({ title: this.state.leftMoveCount })
         let levelNumbers = this.state.configuredLevel.levelNumbers.flat(1)
         this.shuffle(levelNumbers)
         this.setNewListAndSumList(levelNumbers)
@@ -294,7 +288,7 @@ export default class GameScreen extends React.Component {
                   style={{
                     flexDirection: 'row',
                     marginTop: 20,
-                    alignItems: 'center'
+                    alignItems: 'space-between'
                   }}
                 >
                   <Image
@@ -304,76 +298,95 @@ export default class GameScreen extends React.Component {
                       resizeMode: 'contain'
                     }}
                   />
-                  <Text style={styles.finish}>{this.state.gamePoint}</Text>
+                  <Box
+                    style={{
+                      minWidth: 70
+                    }}
+                  >
+                    <Text style={styles.finish}>{this.state.gamePoint}</Text>
+                  </Box>
                 </Box>
                 <Box>
                   <Button style={styles.nextButton} onPress={this.onNext}>
+                    <Image
+                      source={require('../assets/designs/Next_button.png')}
+                      style={{
+                        height: 50,
+                        resizeMode: 'contain',
+                        position: 'absolute',
+                        alignSelf: 'center'
+                      }}
+                    />
                     <Text style={styles.buttonText}>Next</Text>
                   </Button>
                 </Box>
               </Box>
             </ImageBackground>
           </Modal>
-          <Box justifyContent="center" marginTop={20}>
-            <Score
-              point={this.state.userPoint}
-              style={{
-                alignSelf: 'flex-start',
-                position: 'absolute',
-                marginLeft: 10
-              }}
-            />
-            <Textbg
-              text={'LEVEL'}
-              level={this.state.configuredLevel.level}
-              style={{ alignSelf: 'center' }}
-            />
+          <Box style={{ flex: 1 }}>
+            <Box justifyContent="center" marginTop={20}>
+              <Score
+                point={this.state.userPoint}
+                style={{
+                  alignSelf: 'flex-start',
+                  position: 'absolute',
+                  marginLeft: 10
+                }}
+              />
+              <Textbg
+                text={'LEVEL'}
+                level={this.state.configuredLevel.level}
+                style={{ alignSelf: 'center' }}
+              />
+              <Image
+                source={require('../assets/designs/Menu_button.png')}
+                style={{
+                  height: 45,
+                  resizeMode: 'contain',
+                  alignSelf: 'flex-end',
+                  position: 'absolute'
+                }}
+              />
+            </Box>
+
+            <Box marginTop={70}>
+              <Textbg
+                text={this.state.leftMoveCount}
+                textStyle={{ fontSize: 30 }}
+              />
+            </Box>
+          </Box>
+          <Box style={{ flex: 5, justifyContent: 'center' }}>
+            <Box
+              mt={
+                this.state.configuredLevel.rowNum >
+                this.state.configuredLevel.colNum
+                  ? 0
+                  : 0
+              }
+            >
+              <Box alignItems="center">{taleListObj}</Box>
+            </Box>
             <Image
-              source={require('../assets/designs/Menu_button.png')}
+              source={require('../assets/designs/Line_item.png')}
               style={{
-                height: 45,
-                resizeMode: 'contain',
-                alignSelf: 'flex-end',
-                position: 'absolute'
+                alignSelf: 'center',
+                width: WINDOW_WIDTH - 80,
+                marginTop: 25 - (this.state.configuredLevel.colNum - 3) * 5
               }}
             />
+            <Box ml={50}>
+              <SumList
+                sumList={this.state.sumList}
+                columnCount={this.state.configuredLevel.colNum}
+                onTalePress={index => {
+                  global.userPreferences.sound ? playSumTalePress() : null
+                }}
+              />
+            </Box>
           </Box>
 
-          <Box marginTop={70}>
-            <Textbg
-              text={this.state.leftMoveCount}
-              textStyle={{ fontSize: 30 }}
-            />
-          </Box>
-          <Box
-            mt={
-              this.state.configuredLevel.rowNum >
-              this.state.configuredLevel.colNum
-                ? 30
-                : 80
-            }
-          >
-            <Box alignItems="center">{taleListObj}</Box>
-          </Box>
-          <Image
-            source={require('../assets/designs/Line_item.png')}
-            style={{
-              alignSelf: 'center',
-              width: WINDOW_WIDTH - 80,
-              marginTop: 25 - (this.state.configuredLevel.colNum - 3) * 5
-            }}
-          />
-          <Box ml={50}>
-            <SumList
-              sumList={this.state.sumList}
-              columnCount={this.state.configuredLevel.colNum}
-              onTalePress={index => {
-                global.userPreferences.sound ? playSumTalePress() : null
-              }}
-            />
-          </Box>
-
-          <Box alignItems="center">
+          <Box alignItems="center" flex={1}>
             <TimerCountDown
               style={{
                 fontSize: 18,
@@ -413,7 +426,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-    fontFamily: 'Starjedi'
+    fontFamily: 'Starjedi',
+    alignSelf: 'center'
   },
   hint: {
     margin: 40
@@ -441,7 +455,7 @@ const styles = StyleSheet.create({
   nextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    marginTop: 80,
+    marginTop: 50,
     width: WINDOW_WIDTH / 2,
     height: 50,
     borderRadius: 25,

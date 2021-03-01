@@ -22,7 +22,6 @@ function ChallengeScreen(props) {
         const level = await AsyncStorage.getItem('USER_LEVEL')
         setUserLevel(level ? parseInt(level) : 1)
         console.log('retrieved user level: ' + level)
-        console.log(userLevel)
       } catch (e) {
         // saving error
         console.log('there is an error on getting user level.')
@@ -54,7 +53,6 @@ function ChallengeScreen(props) {
 
     setUserPoint(parseInt(userPoint) + parseInt(point))
     //await AsyncStorage.removeItem('USER_POINT')
-    //console.log('removed')
     try {
       await AsyncStorage.setItem(
         'USER_POINT',

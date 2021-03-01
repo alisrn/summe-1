@@ -7,13 +7,11 @@ import Box from './box'
 const WINDOW_WIDTH = Dimensions.get('window').width
 
 function TaleList(props) {
-  //console.log(WINDOW_WIDTH); //414
   const gameBoxSize =
     (WINDOW_WIDTH -
       (25 - (props.columnCount - 3) * 5) * (props.columnCount - 1) -
       100) /
     props.columnCount
-  //console.log(gameBoxSize); //414
 
   const foo = []
   for (let i = 0; i < props.columnCount; i++) {
