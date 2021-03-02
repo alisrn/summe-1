@@ -134,13 +134,18 @@ export default class GameScreen extends React.Component {
 
   levelSuccess() {
     this.leftMoveCount = this.state.leftMoveCount
-    this.totalUserPoint = this.state.userPoint + this.state.leftMoveCount * 100
+    this.totalUserPoint =
+      this.state.userPoint +
+      this.state.leftMoveCount * 100 +
+      this.state.timer * 10
     clearInterval(this.intervalId)
     this.intervalId = null
 
     this.props.route.params.updateUserLevel(
       this.state.configuredLevel.level + 1,
-      this.state.userPoint + this.state.leftMoveCount * 100
+      this.state.userPoint +
+        this.state.leftMoveCount * 100 +
+        this.state.timer * 10
     )
     this.setState({
       isProblemSolved: true
@@ -180,7 +185,8 @@ export default class GameScreen extends React.Component {
         leftMoveCount: 20,
         timer: 100,
         gamePoint: 0,
-        userPoint: this.totalUserPoint
+        userPoint: this.totalUserPoint,
+        timerCountStarted: false
       },
       () => {
         let levelNumbers = this.state.configuredLevel.levelNumbers.flat(1)
@@ -215,19 +221,34 @@ export default class GameScreen extends React.Component {
     })
   }
 
+  startTimerPoints() {
+    if (!this.state.timerCountStarted) {
+      this.intervalId = setInterval(() => {
+        this.setState(prevState => ({
+          timer: prevState.timer - 1,
+          gamePoint: prevState.gamePoint + 10,
+          userPoint: prevState.userPoint + 10
+        }))
+      }, 30)
+    } else {
+      clearInterval(this.intervalId)
+    }
+  }
+
   render() {
     var foo = []
     for (let i = 0; i < this.state.configuredLevel.rowNum; i++) {
       foo.push(i)
     }
 
-    /*     if (this.timeCounter <= 0) {
-      clearInterval(this.timeCounter)
-      this.timeCounter == null
-    } */
-
     if (this.leftMoveCount <= 0) {
       clearInterval(this.moveCounter)
+      if (this.state.timer > 0 && !this.state.timerCountStarted) {
+        this.startTimerPoints()
+        this.setState({ timerCountStarted: true })
+      } else if (this.state.timer <= 0 && this.state.timerCountStarted) {
+        clearInterval(this.intervalId)
+      }
     }
 
     const taleListObj = foo.map((x, index) => {
@@ -240,6 +261,7 @@ export default class GameScreen extends React.Component {
             replaced: this.state.replacedTale
           }}
           columnCount={this.state.configuredLevel.colNum}
+          rowCount={this.state.configuredLevel.rowNum}
           taleNumList={this.state.numList}
           onTalePress={this.onTalePress}
           pressedIndex={this.state.firstPressIndex}
@@ -375,10 +397,11 @@ export default class GameScreen extends React.Component {
                 marginTop: 25 - (this.state.configuredLevel.colNum - 3) * 5
               }}
             />
-            <Box ml={50}>
+            <Box alignItems="center">
               <SumList
                 sumList={this.state.sumList}
                 columnCount={this.state.configuredLevel.colNum}
+                rowCount={this.state.configuredLevel.rowNum}
                 onTalePress={index => {
                   global.userPreferences.sound ? playSumTalePress() : null
                 }}
@@ -391,7 +414,7 @@ export default class GameScreen extends React.Component {
               style={{
                 fontSize: 18,
                 color: theme.colors.pink,
-                marginTop: 40
+                marginTop: 50
               }}
               point={this.state.timer > 0 ? this.state.timer : 0}
             />
