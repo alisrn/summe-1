@@ -1,6 +1,7 @@
 const checkCurrentForActuals = (current, actual) => {
   let someList = new Array(actual.length)
   let finishedCols = []
+  let finishedActCols = []
   for (let i = 0; i < actual.length; i++) {
     someList[i] = []
     for (let j = 0; j < actual.length; j++) {
@@ -22,6 +23,7 @@ const checkCurrentForActuals = (current, actual) => {
               someList[currIndex][actIndex] += 1
               if (someList[currIndex][actIndex] === currentCol.length) {
                 finishedCols.push(currIndex)
+                finishedActCols.push(actIndex)
               }
               break
             }
@@ -30,7 +32,11 @@ const checkCurrentForActuals = (current, actual) => {
       })
     })
   })
-  return { matrix: someList, finishedCols: finishedCols }
+  return {
+    matrix: someList,
+    finishedCols: finishedCols,
+    finishedActCols: finishedActCols
+  }
 }
 
 export const helpMeOnThisOne = (configuredLevel, current) => {
@@ -68,7 +74,10 @@ const createMove = (situation, current, configuredLevel) => {
       if (situation.finishedCols.some(x => x === i)) {
         continue
       }
-      let indexOfTarget = situation.matrix[i].findIndex(x => x === rowNum - k)
+      let indexOfTarget = situation.matrix[i].findIndex(
+        (x, idx) =>
+          x === rowNum - k && !situation.finishedActCols.some(y => y === idx)
+      )
       if (indexOfTarget >= 0) {
         currentCol = i
         actualCol = indexOfTarget
