@@ -7,7 +7,6 @@ import { Image, Text } from 'react-native'
 
 import theme from './utils/theme'
 
-import { Left } from './components/icons'
 import Button from './components/button'
 
 import HomeScreen from './views/HomeScreen'
@@ -60,9 +59,7 @@ function Navigation() {
                   px={20}
                   height="100%"
                   onPress={() => navigation.navigate('MenuBar')}
-                >
-                  <Left color={theme.colors.blue} />
-                </Button>
+                />
               )
             }
           }}
@@ -87,9 +84,7 @@ function Navigation() {
                   px={20}
                   height="100%"
                   onPress={() => navigation.navigate('GameScreen')}
-                >
-                  <Left color={theme.colors.blue} />
-                </Button>
+                />
               )
             }
           }}
@@ -114,9 +109,7 @@ function Navigation() {
                   px={20}
                   height="100%"
                   onPress={() => navigation.navigate('HomeScreen')}
-                >
-                  <Left color={theme.colors.blue} />
-                </Button>
+                />
               )
             }
           }}

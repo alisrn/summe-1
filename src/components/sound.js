@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Image, StyleSheet } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 function Sound(props) {
   return (
@@ -8,6 +7,7 @@ function Sound(props) {
       onPress={() => {
         props.onPress()
       }}
+      style={props.style}
     >
       <Image
         source={
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textbgStyle: {
-    height: 60,
+    height: 50,
     resizeMode: 'contain'
     //marginTop: 10
     //marginLeft: -20

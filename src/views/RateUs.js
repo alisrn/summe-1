@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-import { Image } from 'react-native'
+import { Image , StyleSheet, Text, Dimensions} from 'react-native'
 import { Star, StarFilled } from '../components/icons'
 import Box from '../components/box'
 import Button from '../components/button'
 import theme from '../utils/theme'
+
+const WINDOW_WIDTH = Dimensions.get('window').width
 
 function RateUs() {
   const [starCount, setStarCount] = React.useState(0)
@@ -58,8 +60,36 @@ function RateUs() {
             )}
         </Button>
       </Box>
+      <Button style={styles.nextButton} onPress={this.onNext}>
+                    <Image
+                      source={require('../assets/designs/Next_button.png')}
+                      style={{
+                        height: 50,
+                        resizeMode: 'contain',
+                        position: 'absolute',
+                        alignSelf: 'center'
+                      }}
+                    />
+                    <Text style={styles.buttonText}>Rate</Text>
+                  </Button>
     </Box>
   )
 }
+
+const styles = StyleSheet.create({
+  buttonText: {
+    color: '#3C7882',
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  nextButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: 50,
+    width: WINDOW_WIDTH / 2,
+    height: 50,
+    borderRadius: 25,
+    color: '#C73A1F'
+  }})
 
 export default RateUs

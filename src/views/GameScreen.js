@@ -5,7 +5,8 @@ import {
   ImageBackground,
   StyleSheet,
   Image,
-  SafeAreaView
+  SafeAreaView,
+  TouchableOpacity
 } from 'react-native'
 import Modal from 'react-native-modal'
 import Box from '../components/box'
@@ -235,6 +236,10 @@ export default class GameScreen extends React.Component {
     }
   }
 
+  onRateUs() {
+    this.props.navigation.navigate('RateUs')
+  }
+
   render() {
     var foo = []
     for (let i = 0; i < this.state.configuredLevel.rowNum; i++) {
@@ -360,14 +365,10 @@ export default class GameScreen extends React.Component {
                 level={this.state.configuredLevel.level}
                 style={{ alignSelf: 'center' }}
               />
-              <Image
-                source={require('../assets/designs/Menu_button.png')}
-                style={{
-                  height: 45,
-                  resizeMode: 'contain',
-                  alignSelf: 'flex-end',
-                  position: 'absolute'
-                }}
+              <Sound
+                onPress={this.onSoundChange.bind(this)}
+                soundOn={this.state.sound}
+                style={{ alignSelf: 'flex-end', position: 'absolute' }}
               />
             </Box>
 
@@ -427,10 +428,16 @@ export default class GameScreen extends React.Component {
               flexDirection: 'row'
             }}
           >
-            <Sound
-              onPress={this.onSoundChange.bind(this)}
-              soundOn={this.state.sound}
-            />
+            <TouchableOpacity onPress={this.onRateUs.bind(this)}>
+              <Image
+                source={require('../assets/designs/Rate_us_button.png')}
+                style={{
+                  height: 60,
+                  resizeMode: 'contain'
+                }}
+              />
+            </TouchableOpacity>
+
             <Hint onPress={this.onHint.bind(this)} />
           </Box>
         </ImageBackground>

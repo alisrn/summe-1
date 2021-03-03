@@ -10,7 +10,7 @@ function Hint(props) {
       }}
     >
       <Image
-        source={require('../assets/designs/Hint_button.png')}
+        source={require('../assets/designs/hint.png')}
         style={styles.textbgStyle}
       />
     </TouchableOpacity>
