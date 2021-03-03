@@ -41,12 +41,29 @@ export default class GameScreen extends React.Component {
         x => x.level === this.props.route.params.data
       ),
       userPoint: parseInt(this.props.route.params.userPoint, 10),
-      leftMoveCount: 20,
+      leftMoveCount: this.setLevelMoveCount(
+        levels.find(x => x.level === this.props.route.params.data).level
+      ),
       gamePoint: 0,
       targetTale: [-1, -1],
       replacedTale: [-1, -1],
       sound: global.userPreferences.sound
     }
+  }
+
+  setLevelMoveCount(configuredLevel) {
+    if (configuredLevel <= 30) {
+      return 10
+    } else if (configuredLevel <= 50) {
+      return 15
+    } else if (configuredLevel <= 100) {
+      return 20
+    } else if (configuredLevel <= 140) {
+      return 30
+    } else if (configuredLevel <= 200) {
+      return 40
+    }
+    return 50
   }
 
   componentDidMount() {
@@ -124,7 +141,10 @@ export default class GameScreen extends React.Component {
     })
 
     if (this.allEqual(forSumList)) {
-      if (this.state.leftMoveCount >= 20) {
+      if (
+        this.state.leftMoveCount >=
+        this.setLevelMoveCount(this.state.configuredLevel)
+      ) {
         this.shuffle(defList)
         this.setNewListAndSumList(defList)
       } else {
@@ -137,7 +157,7 @@ export default class GameScreen extends React.Component {
     this.leftMoveCount = this.state.leftMoveCount
     this.totalUserPoint =
       this.state.userPoint +
-      this.state.leftMoveCount * 100 +
+      (this.state.leftMoveCount > 0 ? this.state.leftMoveCount * 100 : 0) +
       this.state.timer * 10
     clearInterval(this.intervalId)
     this.intervalId = null
@@ -145,7 +165,7 @@ export default class GameScreen extends React.Component {
     this.props.route.params.updateUserLevel(
       this.state.configuredLevel.level + 1,
       this.state.userPoint +
-        this.state.leftMoveCount * 100 +
+        (this.state.leftMoveCount > 0 ? this.state.leftMoveCount * 100 : 0) +
         this.state.timer * 10
     )
     this.setState({
@@ -183,7 +203,9 @@ export default class GameScreen extends React.Component {
           x => x.level === this.props.route.params.data
         ),
         isProblemSolved: false,
-        leftMoveCount: 20,
+        leftMoveCount: this.setLevelMoveCount(
+          levels.find(x => x.level === this.props.route.params.data).level
+        ),
         timer: 100,
         gamePoint: 0,
         userPoint: this.totalUserPoint,
@@ -200,15 +222,20 @@ export default class GameScreen extends React.Component {
         }, 1000)
       }
     )
-    this.leftMoveCount = 20
+    this.leftMoveCount = this.setLevelMoveCount(
+      levels.find(x => x.level === this.props.route.params.data).level
+    )
   }
 
   onHint() {
     let move = helpMeOnThisOne(this.state.configuredLevel, this.state.numList)
-    this.setState({
-      firstPressIndex: null,
-      targetTale: move.indexToBeRetrieved,
-      replacedTale: move.indexToBeReplaced
+    this.setState(prevState => {
+      return {
+        firstPressIndex: null,
+        targetTale: move.indexToBeRetrieved,
+        replacedTale: move.indexToBeReplaced,
+        userPoint: prevState.userPoint - 1000
+      }
     })
   }
 
@@ -379,7 +406,7 @@ export default class GameScreen extends React.Component {
               />
             </Box>
           </Box>
-          <Box style={{ flex: 5, justifyContent: 'center' }}>
+          <Box style={{ flex: 6, justifyContent: 'center' }}>
             <Box
               mt={
                 this.state.configuredLevel.rowNum >

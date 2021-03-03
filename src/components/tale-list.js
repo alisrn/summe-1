@@ -33,9 +33,9 @@ function TaleList(props) {
         ml={
           index === 0
             ? 0
-            : 25 - (Math.max(props.columnCount, props.rowCount) - 3) * 5
+            : 30 - (Math.max(props.columnCount, props.rowCount) - 3) * 5
         }
-        mt={25 - (Math.max(props.columnCount, props.rowCount) - 3) * 5}
+        mt={30 - (Math.max(props.columnCount, props.rowCount) - 3) * 5}
         width={gameBoxSize}
         height={gameBoxSize}
         isOnHint={isOnHint}
@@ -43,7 +43,7 @@ function TaleList(props) {
           42 -
           (Math.max(props.columnCount, props.rowCount) - 2) *
             (props.taleNumList[props.columnCount * props.index + index] >= 100
-              ? 4
+              ? 3
               : 2)
         }
         key={[props.index, index]}
