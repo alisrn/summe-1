@@ -5,10 +5,10 @@ import Box from './box'
 function TimerCountdown(props) {
   return (
     <Box style={[styles.container, { ...props.style }]}>
-      {/*       <Image
+      <Image
         source={require('../assets/designs/Text_bg.png')}
         style={styles.textbgStyle}
-      /> */}
+      />
       <Image
         source={require('../assets/designs/Time_icon.png')}
         style={styles.iconStyle}
@@ -20,28 +20,26 @@ function TimerCountdown(props) {
 
 const styles = StyleSheet.create({
   container: {
-    //alignContent: 'center',
+    alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center'
   },
   textbgStyle: {
     height: 40,
     resizeMode: 'contain',
-    position: 'absolute'
-    //marginTop: 10
-    //marginLeft: -20
+    marginTop: 10
   },
   iconStyle: {
-    //marginRight: 100,
-    height: 70,
+    alignSelf: 'flex-start',
+    height: 60,
     resizeMode: 'contain',
     position: 'absolute'
   },
   textStyle: {
-    color: 'black',
+    color: 'white',
+    alignSelf: 'center',
     position: 'absolute',
-    fontSize: 24
-    //paddingLeft: 20
+    fontSize: 22
   }
 })
 

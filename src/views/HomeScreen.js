@@ -108,8 +108,6 @@ function HomeScreen(props) {
       }
     }
 
-    //await AsyncStorage.removeItem('USER_POINT')
-    //console.log('removed')
     try {
       await AsyncStorage.setItem('USER_POINT', point.toString())
       console.log('earned user point: ' + point.toString())
@@ -145,15 +143,13 @@ function HomeScreen(props) {
             <Animated.View
               style={{
                 marginTop: -140,
-                opacity: scaleValue
-                /* transform: [{ scale: scaleValue }] */
+                opacity: scaleValue,
+                transform: [{ scale: scaleValue }]
               }}
             >
               <Button
                 style={{
                   alignSelf: 'center',
-                  //borderWidth: 1,
-                  //backgroundColor: '#ED36BA',
                   width: WINDOW_WIDTH / 5,
                   borderRadius: 20,
                   justifyContent: 'center'
@@ -170,11 +166,9 @@ function HomeScreen(props) {
                   source={require('../assets/designs/Large_Play_button.png')}
                   style={{
                     height: 80,
-                    //width: 50,
                     resizeMode: 'contain'
                   }}
                 />
-                {/* <Text style={[styles.buttonText]}>Play</Text> */}
               </Button>
             </Animated.View>
           </Box>

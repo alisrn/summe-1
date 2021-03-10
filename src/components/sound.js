@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textbgStyle: {
-    height: 50,
+    height: 60,
     resizeMode: 'contain'
     //marginTop: 10
     //marginLeft: -20

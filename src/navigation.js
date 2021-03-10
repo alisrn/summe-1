@@ -14,6 +14,8 @@ import ChallengeScreen from './views/ChallengeScreen'
 import GameScreen from './views/GameScreen'
 import MenuBar from './views/MenuBar'
 import RateUs from './views/RateUs'
+import SvgLeft from './components/icons/Left'
+import { justifyContent } from 'styled-system'
 
 const Stack = createStackNavigator()
 
@@ -45,6 +47,7 @@ function Navigation() {
           options={({ route, navigation }) => {
             return {
               title: 'Rate us',
+              headerShown: true,
               headerTintColor: theme.colors.pink,
               headerTitleStyle: {
                 fontWeight: 'bold',
@@ -56,10 +59,16 @@ function Navigation() {
               },
               headerLeft: () => (
                 <Button
-                  px={20}
                   height="100%"
-                  onPress={() => navigation.navigate('MenuBar')}
-                />
+                  style={{
+                    marginLeft: 20,
+                    width: '100%',
+                    height: '100%'
+                  }}
+                  onPress={() => navigation.navigate('GameScreen')}
+                >
+                  <SvgLeft />
+                </Button>
               )
             }
           }}

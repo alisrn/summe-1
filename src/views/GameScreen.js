@@ -234,7 +234,7 @@ export default class GameScreen extends React.Component {
         firstPressIndex: null,
         targetTale: move.indexToBeRetrieved,
         replacedTale: move.indexToBeReplaced,
-        userPoint: prevState.userPoint - 1000
+        userPoint: prevState.userPoint - 100
       }
     })
   }
@@ -264,7 +264,14 @@ export default class GameScreen extends React.Component {
   }
 
   onRateUs() {
-    this.props.navigation.navigate('RateUs')
+    this.props.navigation.navigate('RateUs', {
+      headerLeft: () => (
+        <Button
+          height="100%"
+          onPress={() => this.props.navigation.navigate('GameScreen')}
+        />
+      )
+    })
   }
 
   render() {
@@ -392,11 +399,22 @@ export default class GameScreen extends React.Component {
                 level={this.state.configuredLevel.level}
                 style={{ alignSelf: 'center' }}
               />
-              <Sound
-                onPress={this.onSoundChange.bind(this)}
-                soundOn={this.state.sound}
-                style={{ alignSelf: 'flex-end', position: 'absolute' }}
-              />
+              <TouchableOpacity
+                onPress={this.onRateUs.bind(this)}
+                style={{
+                  alignSelf: 'flex-end',
+                  position: 'absolute',
+                  height: 50
+                }}
+              >
+                <Image
+                  source={require('../assets/designs/Rate_us_button.png')}
+                  style={{
+                    height: 50,
+                    resizeMode: 'contain'
+                  }}
+                />
+              </TouchableOpacity>
             </Box>
 
             <Box marginTop={70}>
@@ -455,16 +473,14 @@ export default class GameScreen extends React.Component {
               flexDirection: 'row'
             }}
           >
-            <TouchableOpacity onPress={this.onRateUs.bind(this)}>
-              <Image
-                source={require('../assets/designs/Rate_us_button.png')}
-                style={{
-                  height: 60,
-                  resizeMode: 'contain'
-                }}
-              />
-            </TouchableOpacity>
-
+            <Sound
+              onPress={this.onSoundChange.bind(this)}
+              soundOn={this.state.sound}
+              style={{
+                height: 60,
+                resizeMode: 'contain'
+              }}
+            />
             <Hint onPress={this.onHint.bind(this)} />
           </Box>
         </ImageBackground>
