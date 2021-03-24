@@ -3,7 +3,6 @@ import * as React from 'react'
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { Image, Text } from 'react-native'
 
 import theme from './utils/theme'
 
@@ -12,10 +11,10 @@ import Button from './components/button'
 import HomeScreen from './views/HomeScreen'
 import ChallengeScreen from './views/ChallengeScreen'
 import GameScreen from './views/GameScreen'
+import Intro from './views/Intro'
 import MenuBar from './views/MenuBar'
 import RateUs from './views/RateUs'
 import SvgLeft from './components/icons/Left'
-import { justifyContent } from 'styled-system'
 
 const Stack = createStackNavigator()
 
@@ -37,6 +36,16 @@ function Navigation() {
           component={GameScreen}
           options={({ route, navigation }) => {
             return {
+              headerShown: false
+            }
+          }}
+        />
+        <Stack.Screen
+          name="Intro"
+          component={Intro}
+          options={({ route, navigation }) => {
+            return {
+              title: 'Intro',
               headerShown: false
             }
           }}

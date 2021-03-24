@@ -155,11 +155,19 @@ function HomeScreen(props) {
                   justifyContent: 'center'
                 }}
                 onPress={() => {
-                  props.navigation.navigate('GameScreen', {
-                    data: userLevel,
-                    updateUserLevel: updateUserLevelAndPoint,
-                    userPoint: userPoint
-                  })
+                  if (userPoint && userPoint > 0) {
+                    props.navigation.navigate('GameScreen', {
+                      data: userLevel,
+                      updateUserLevel: updateUserLevelAndPoint,
+                      userPoint: userPoint
+                    })
+                  } else {
+                    props.navigation.navigate('Intro', {
+                      data: userLevel,
+                      updateUserLevel: updateUserLevelAndPoint,
+                      userPoint: userPoint
+                    })
+                  }
                 }}
               >
                 <Image
