@@ -21,7 +21,6 @@ function ChallengeScreen(props) {
       try {
         const level = await AsyncStorage.getItem('USER_LEVEL')
         setUserLevel(level ? parseInt(level) : 1)
-        console.log('retrieved user level: ' + level)
       } catch (e) {
         // saving error
         console.log('there is an error on getting user level.')
@@ -30,7 +29,6 @@ function ChallengeScreen(props) {
       try {
         const point = await AsyncStorage.getItem('USER_POINT')
         setUserPoint(point ? point : 0)
-        console.log('retrieved user point: ' + point)
       } catch (error) {
         console.log('there is an error on getting user point.')
         console.log(error)
@@ -44,7 +42,6 @@ function ChallengeScreen(props) {
       setUserLevel(level)
       try {
         await AsyncStorage.setItem('USER_LEVEL', level.toString())
-        console.log('set user level: ' + level.toString())
       } catch (e) {
         // saving error
         console.log('there is an error on save level.')
@@ -58,7 +55,6 @@ function ChallengeScreen(props) {
         'USER_POINT',
         (parseInt(userPoint) + parseInt(point)).toString()
       )
-      console.log('earned user point: ' + parseInt(point))
     } catch (e) {
       // saving error
       console.log('there is an error on save point.')

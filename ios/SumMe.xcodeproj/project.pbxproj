@@ -17,6 +17,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* SumMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SumMeTests.m */; };
+		40E4145E263578DA00720EAF /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E4145D263578DA00720EAF /* AppCenter-Config.plist */; };
 		793D29C839084FDC928FE201 /* Stjldbl2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */; };
 		80F9110E7853184F6B34A9FA /* libPods-SumMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 064F9D7A1AF4F92A0B61836E /* libPods-SumMeTests.a */; };
 		8847DE3407FBCDE6745E249C /* libPods-SumMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E3C484DD1D173837FA2A8E /* libPods-SumMe.a */; };
@@ -65,6 +66,7 @@
 		20A5DCDE3527848447E5C4C9 /* libPods-SumMe-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SumMe-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* SumMe-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SumMe-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SumMe-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SumMe-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E4145D263578DA00720EAF /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "../../AppCenter-Config.plist"; sourceTree = "<group>"; };
 		43CE2EB8601C4589887D81EF /* Stjldbl1.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Stjldbl1.ttf; path = ../src/assets/fonts/Stjldbl1.ttf; sourceTree = "<group>"; };
 		52505945957377FA1D182ED6 /* Pods-SumMe-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SumMe-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-SumMe-tvOSTests/Pods-SumMe-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5881DB039F7E4EDCB81EDEB5 /* Stjldbl2.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Stjldbl2.ttf; path = ../src/assets/fonts/Stjldbl2.ttf; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				40E4145D263578DA00720EAF /* AppCenter-Config.plist */,
 				13B07FAE1A68108700A75B9A /* SumMe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SumMeTests */,
@@ -370,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				40E4145E263578DA00720EAF /* AppCenter-Config.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				CA08C776CA1E469384D720E6 /* Starjedi.ttf in Resources */,
 				9FCDBA6024034C70984E921F /* Starjhol.ttf in Resources */,

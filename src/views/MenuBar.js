@@ -31,9 +31,6 @@ function MenuBar(props) {
       global.userPreferences = JSON.parse(global.userPreferences)
       setSoundValue(global.userPreferences.sound)
       setMusicValue(global.userPreferences.music)
-      console.log(
-        'retrieved user PREFERENCE: ' + JSON.stringify(global.userPreferences)
-      )
     } catch (e) {
       // saving error
       console.log('there is an error on getting user PREFERENCE.')
@@ -52,7 +49,6 @@ function MenuBar(props) {
         'USER_PREFERENCES',
         JSON.stringify(global.userPreferences)
       )
-      console.log('set user preferences to: ' + global.userPreferences)
     } catch (e) {
       // saving error
       console.log('there is an error on save preferences.')

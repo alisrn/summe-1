@@ -67,9 +67,6 @@ export default class GameScreen extends React.Component {
   }
 
   componentDidMount() {
-    console.log('pic ratio: ' + (1047 / 597).toString())
-    console.log('screen ratio: ' + (WINDOW_HEIGHT / WINDOW_WIDTH).toString())
-
     let levelNumbers = this.state.configuredLevel.levelNumbers.flat(1)
     this.shuffle(levelNumbers)
     this.setNewListAndSumList(levelNumbers)

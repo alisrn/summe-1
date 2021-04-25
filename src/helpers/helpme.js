@@ -105,7 +105,6 @@ const createMove = (situation, current, configuredLevel) => {
     indexToBeRetrieved: targetIndex,
     indexToBeReplaced: [foundItemAndReplacement.indexToBeReplaced, currentCol]
   }
-  console.log(result)
   return result
 }
 

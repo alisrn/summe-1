@@ -17,10 +17,8 @@ import Box from '../components/box'
 //import bg from '../assets/bg'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
-const WINDOW_HEIGHT = Dimensions.get('window').height
 
 function HomeScreen(props) {
-  console.log(WINDOW_HEIGHT)
   let yValue = new Animated.Value(0)
   let scaleValue = new Animated.Value(0)
   let enteranceVal = new Animated.Value(0)
@@ -59,7 +57,6 @@ function HomeScreen(props) {
       try {
         const level = await AsyncStorage.getItem('USER_LEVEL')
         setUserLevel(level ? parseInt(level) : 1)
-        console.log('retrieved user level: ' + level)
       } catch (e) {
         // saving error
         console.log('there is an error on getting user level.')
@@ -68,7 +65,6 @@ function HomeScreen(props) {
       try {
         const point = await AsyncStorage.getItem('USER_POINT')
         setUserPoint(point ? parseInt(point, 10) : 0)
-        console.log('retrieved user point: ' + point)
       } catch (error) {
         console.log('there is an error on getting user point.')
         console.log(error)
@@ -84,9 +80,6 @@ function HomeScreen(props) {
             music: true
           }
         }
-        console.log(
-          'retrieved user PREFERENCE: ' + JSON.stringify(global.userPreferences)
-        )
       } catch (e) {
         // saving error
         console.log('there is an error on getting user PREFERENCE.')
@@ -103,7 +96,6 @@ function HomeScreen(props) {
       setUserPoint(point)
       try {
         await AsyncStorage.setItem('USER_LEVEL', level.toString())
-        console.log('set user level: ' + level.toString())
       } catch (e) {
         // saving error
         console.log('there is an error on save level.')
@@ -112,7 +104,6 @@ function HomeScreen(props) {
 
     try {
       await AsyncStorage.setItem('USER_POINT', point.toString())
-      console.log('earned user point: ' + point.toString())
     } catch (e) {
       // saving error
       console.log('there is an error on save point.')
