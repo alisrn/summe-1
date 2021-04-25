@@ -67,6 +67,9 @@ export default class GameScreen extends React.Component {
   }
 
   componentDidMount() {
+    console.log('pic ratio: ' + (1047 / 597).toString())
+    console.log('screen ratio: ' + (WINDOW_HEIGHT / WINDOW_WIDTH).toString())
+
     let levelNumbers = this.state.configuredLevel.levelNumbers.flat(1)
     this.shuffle(levelNumbers)
     this.setNewListAndSumList(levelNumbers)
@@ -317,7 +320,7 @@ export default class GameScreen extends React.Component {
           <Modal
             props={this.props}
             onModalShow={this.onSuccessOpen.bind(this)}
-            isVisible={this.state.isProblemSolved}
+            isVisible={!this.state.isProblemSolved}
             animationIn="slideInUp"
             animationInTiming={700}
             animationOut="slideOutDown"
@@ -332,7 +335,10 @@ export default class GameScreen extends React.Component {
                 style={{
                   justifyContent: 'center',
                   alignItems: 'center',
-                  marginTop: WINDOW_HEIGHT / 4.97
+                  marginTop:
+                    WINDOW_HEIGHT / WINDOW_WIDTH > 2
+                      ? WINDOW_HEIGHT / 4.97
+                      : WINDOW_HEIGHT / 4
                 }}
               >
                 <Text style={styles.finish}>level</Text>
@@ -509,7 +515,7 @@ const styles = StyleSheet.create({
   },
   nextProblemModal: {
     //backgroundColor: 'white',
-    //height: (WINDOW_HEIGHT * 4) / 5,
+    height: (WINDOW_HEIGHT * 5) / 6,
     maxHeight: WINDOW_HEIGHT / 2,
     //width: (WINDOW_WIDTH * 5) / 6,
     alignSelf: 'center',
@@ -523,8 +529,10 @@ const styles = StyleSheet.create({
   },
   imageModal: {
     flex: 1,
-    height: (WINDOW_HEIGHT * 2) / 3,
+    alignSelf: 'center',
+    height: (WINDOW_WIDTH * 1.753 * 5) / 6,
     width: (WINDOW_WIDTH * 5) / 6,
+    //aspectRatio: 1.5,
     resizeMode: 'contain'
   },
   nextButton: {
