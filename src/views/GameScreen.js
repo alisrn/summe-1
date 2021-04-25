@@ -317,7 +317,7 @@ export default class GameScreen extends React.Component {
           <Modal
             props={this.props}
             onModalShow={this.onSuccessOpen.bind(this)}
-            isVisible={!this.state.isProblemSolved}
+            isVisible={this.state.isProblemSolved}
             animationIn="slideInUp"
             animationInTiming={700}
             animationOut="slideOutDown"
