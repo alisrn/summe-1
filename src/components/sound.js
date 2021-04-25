@@ -1,5 +1,8 @@
 import * as React from 'react'
-import { Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+
+const WINDOW_WIDTH = Dimensions.get('window').width
+const WINDOW_HEIGHT = Dimensions.get('window').height
 
 function Sound(props) {
   return (
@@ -28,14 +31,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textbgStyle: {
-    height: 60,
+    height: WINDOW_HEIGHT / 14.93,
     resizeMode: 'contain'
     //marginTop: 10
     //marginLeft: -20
   },
   iconStyle: {
-    marginRight: 70,
-    height: 35,
+    marginRight: WINDOW_WIDTH / 5.91,
+    height: WINDOW_HEIGHT / 25.6,
     resizeMode: 'contain'
     //position: 'absolute'
   },

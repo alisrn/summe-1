@@ -332,7 +332,7 @@ export default class GameScreen extends React.Component {
                 style={{
                   justifyContent: 'center',
                   alignItems: 'center',
-                  marginTop: 180
+                  marginTop: WINDOW_HEIGHT / 4.97
                 }}
               >
                 <Text style={styles.finish}>level</Text>
@@ -340,28 +340,28 @@ export default class GameScreen extends React.Component {
                 <Image
                   source={require('../assets/designs/Chest_item.png')}
                   style={{
-                    height: 140,
+                    height: WINDOW_HEIGHT / 6.4,
                     resizeMode: 'contain',
-                    marginTop: 20
+                    marginTop: WINDOW_HEIGHT / (6.4 * 7)
                   }}
                 />
                 <Box
                   style={{
                     flexDirection: 'row',
-                    marginTop: 20,
+                    marginTop: WINDOW_HEIGHT / (6.4 * 7),
                     alignItems: 'space-between'
                   }}
                 >
                   <Image
                     source={require('../assets/designs/Star_icon.png')}
                     style={{
-                      height: 35,
+                      height: WINDOW_HEIGHT / (6.4 * 4),
                       resizeMode: 'contain'
                     }}
                   />
                   <Box
                     style={{
-                      minWidth: 70
+                      minWidth: WINDOW_HEIGHT / (6.4 * 2)
                     }}
                   >
                     <Text style={styles.finish}>{this.state.gamePoint}</Text>
@@ -372,7 +372,7 @@ export default class GameScreen extends React.Component {
                     <Image
                       source={require('../assets/designs/Next_button.png')}
                       style={{
-                        height: 50,
+                        height: WINDOW_HEIGHT / 17.92,
                         resizeMode: 'contain',
                         position: 'absolute',
                         alignSelf: 'center'
@@ -391,7 +391,7 @@ export default class GameScreen extends React.Component {
                 style={{
                   alignSelf: 'flex-start',
                   position: 'absolute',
-                  marginLeft: 10
+                  marginLeft: WINDOW_HEIGHT / (17.92 * 5)
                 }}
               />
               <Textbg
@@ -404,20 +404,20 @@ export default class GameScreen extends React.Component {
                 style={{
                   alignSelf: 'flex-end',
                   position: 'absolute',
-                  height: 50
+                  height: WINDOW_HEIGHT / 17.92
                 }}
               >
                 <Image
                   source={require('../assets/designs/Rate_us_button.png')}
                   style={{
-                    height: 50,
+                    height: WINDOW_HEIGHT / 17.92,
                     resizeMode: 'contain'
                   }}
                 />
               </TouchableOpacity>
             </Box>
 
-            <Box marginTop={70}>
+            <Box marginTop={WINDOW_HEIGHT / (6.4 * 2)}>
               <Textbg
                 text={this.state.leftMoveCount}
                 textStyle={{ fontSize: 30 }}
@@ -439,8 +439,10 @@ export default class GameScreen extends React.Component {
               source={require('../assets/designs/Line_item.png')}
               style={{
                 alignSelf: 'center',
-                width: WINDOW_WIDTH - 80,
-                marginTop: 25 - (this.state.configuredLevel.colNum - 3) * 5
+                width: WINDOW_WIDTH - WINDOW_WIDTH / 5.175,
+                marginTop:
+                  WINDOW_HEIGHT / (17.92 * 2) -
+                  (this.state.configuredLevel.colNum - 3) * 5
               }}
             />
             <Box alignItems="center">
@@ -460,7 +462,7 @@ export default class GameScreen extends React.Component {
               style={{
                 fontSize: 18,
                 color: theme.colors.pink,
-                marginTop: 50
+                marginTop: WINDOW_HEIGHT / 17.92
               }}
               point={this.state.timer > 0 ? this.state.timer : 0}
             />
@@ -477,7 +479,7 @@ export default class GameScreen extends React.Component {
               onPress={this.onSoundChange.bind(this)}
               soundOn={this.state.sound}
               style={{
-                height: 60,
+                height: WINDOW_WIDTH / 6.9,
                 resizeMode: 'contain'
               }}
             />
@@ -503,17 +505,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   hint: {
-    margin: 40
+    margin: WINDOW_HEIGHT / 22.4
   },
   nextProblemModal: {
     //backgroundColor: 'white',
-    height: (WINDOW_HEIGHT * 4) / 5,
+    //height: (WINDOW_HEIGHT * 4) / 5,
     maxHeight: WINDOW_HEIGHT / 2,
     //width: (WINDOW_WIDTH * 5) / 6,
     alignSelf: 'center',
     alignItems: 'center',
     marginTop: WINDOW_HEIGHT / 8,
-    borderRadius: 20
+    borderRadius: WINDOW_HEIGHT / 16
   },
   image: {
     flex: 1,
@@ -528,10 +530,10 @@ const styles = StyleSheet.create({
   nextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    marginTop: 50,
+    marginTop: WINDOW_HEIGHT / 17.92,
     width: WINDOW_WIDTH / 2,
-    height: 50,
-    borderRadius: 25,
+    height: WINDOW_HEIGHT / 17.92,
+    borderRadius: WINDOW_HEIGHT / (17.92 * 2),
     color: '#C73A1F'
   }
 })

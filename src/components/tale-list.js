@@ -9,9 +9,12 @@ const WINDOW_WIDTH = Dimensions.get('window').width
 function TaleList(props) {
   const gameBoxSize =
     (WINDOW_WIDTH -
-      (25 - (Math.max(props.columnCount, props.rowCount) - 3) * 5) *
+      (WINDOW_WIDTH / 16.56 -
+        (Math.max(props.columnCount, props.rowCount) - 3) * 5) *
         (Math.max(props.columnCount, props.rowCount) - 1) -
-      (props.columnCount < props.rowCount ? 50 : 75)) /
+      (props.columnCount < props.rowCount
+        ? (WINDOW_WIDTH / 16.56) * 2
+        : (WINDOW_WIDTH / 16.56) * 3)) /
     Math.max(props.columnCount, props.rowCount)
 
   const foo = []
@@ -33,9 +36,13 @@ function TaleList(props) {
         ml={
           index === 0
             ? 0
-            : 30 - (Math.max(props.columnCount, props.rowCount) - 3) * 5
+            : WINDOW_WIDTH / 13.8 -
+              (Math.max(props.columnCount, props.rowCount) - 3) * 5
         }
-        mt={30 - (Math.max(props.columnCount, props.rowCount) - 3) * 5}
+        mt={
+          WINDOW_WIDTH / 13.8 -
+          (Math.max(props.columnCount, props.rowCount) - 3) * 5
+        }
         width={gameBoxSize}
         height={gameBoxSize}
         isOnHint={isOnHint}

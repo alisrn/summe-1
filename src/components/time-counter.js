@@ -1,6 +1,9 @@
 import React from 'react'
-import { Image, Text, StyleSheet } from 'react-native'
+import { Image, Text, StyleSheet, Dimensions } from 'react-native'
 import Box from './box'
+
+const WINDOW_WIDTH = Dimensions.get('window').width
+const WINDOW_HEIGHT = Dimensions.get('window').height
 
 function TimerCountdown(props) {
   return (
@@ -25,13 +28,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textbgStyle: {
-    height: 40,
+    height: WINDOW_WIDTH / 10.35,
     resizeMode: 'contain',
-    marginTop: 10
+    marginTop: WINDOW_HEIGHT / 89.6
   },
   iconStyle: {
     alignSelf: 'flex-start',
-    height: 60,
+    height: WINDOW_WIDTH / 6.9,
     resizeMode: 'contain',
     position: 'absolute'
   },

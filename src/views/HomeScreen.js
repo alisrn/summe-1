@@ -17,8 +17,10 @@ import Box from '../components/box'
 //import bg from '../assets/bg'
 
 const WINDOW_WIDTH = Dimensions.get('window').width
+const WINDOW_HEIGHT = Dimensions.get('window').height
 
 function HomeScreen(props) {
+  console.log(WINDOW_HEIGHT)
   let yValue = new Animated.Value(0)
   let scaleValue = new Animated.Value(0)
   let enteranceVal = new Animated.Value(0)
@@ -132,7 +134,7 @@ function HomeScreen(props) {
               marginTop: 100,
               transform: [{ translateY: yValue }],
               opacity: enteranceVal,
-              height: 80,
+              height: WINDOW_WIDTH / 5.175,
               //width: 50,
               resizeMode: 'contain'
             }}
@@ -173,7 +175,7 @@ function HomeScreen(props) {
                 <Image
                   source={require('../assets/designs/Large_Play_button.png')}
                   style={{
-                    height: 80,
+                    height: WINDOW_WIDTH / 5.175,
                     resizeMode: 'contain'
                   }}
                 />

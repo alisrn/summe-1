@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet, Dimensions } from 'react-native'
 import Text from './text'
 import Box from './box'
-
+const WINDOW_WIDTH = Dimensions.get('window').width
+const WINDOW_HEIGHT = Dimensions.get('window').height
 function Score(props) {
   return (
     <Box style={[styles.container, { ...props.style }]}>
@@ -27,22 +28,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textbgStyle: {
-    height: 45,
+    height: WINDOW_HEIGHT / 19.91,
     resizeMode: 'contain',
     position: 'absolute'
     //marginTop: 10
     //marginLeft: -20
   },
   iconStyle: {
-    marginRight: 70,
-    height: 35,
+    marginRight: WINDOW_WIDTH / 5.91,
+    height: WINDOW_HEIGHT / 25.6,
     resizeMode: 'contain'
     //position: 'absolute'
   },
   textStyle: {
     color: 'white',
     alignSelf: 'flex-end',
-    paddingRight: 5,
+    paddingRight: WINDOW_WIDTH / 82.8,
     position: 'absolute',
     fontSize: 18
   }

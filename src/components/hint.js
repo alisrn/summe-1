@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet, Dimensions } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+const WINDOW_WIDTH = Dimensions.get('window').width
 
 function Hint(props) {
   return (
@@ -24,21 +25,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textbgStyle: {
-    height: 60,
+    height: WINDOW_WIDTH / 6.9,
     resizeMode: 'contain'
     //marginTop: 10
     //marginLeft: -20
-  },
-  iconStyle: {
-    marginRight: 70,
-    height: 35,
-    resizeMode: 'contain'
-    //position: 'absolute'
-  },
-  textStyle: {
-    color: 'white',
-    position: 'absolute',
-    fontSize: 24
   }
 })
 
